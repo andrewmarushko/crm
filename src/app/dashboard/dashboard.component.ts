@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ConfigService } from './dashboard.service';
 
 export interface Users {
-  id: number;
-  name: string;
-  username: string;
-  email: string;
-  address: Address;
+  id?: number;
+  name?: string;
+  username?: string;
+  email?: string;
+  address?: Address;
 }
 
 export interface Address {

@@ -5,7 +5,9 @@ import { Users } from '../dashboard.component';
   selector: 'dashboard-child',
   template: `<div>
     Users FROM PARENT:
-    <div *ngFor="let user of users">{{ user.name }} ({{ user.username }})</div>
+    <div *ngFor="let user of users">
+      <a routerLink="{{ user.id }}">{{ user.name }} ({{ user.username }})</a>
+    </div>
   </div>`,
 })
 export class DashboardChildComponent {
