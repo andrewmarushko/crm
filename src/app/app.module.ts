@@ -1,5 +1,6 @@
 import { DashboardRoutingModule } from './dashboard/dashboard-routing.module';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -10,7 +11,12 @@ import { ConfigService } from './dashboard/dashboard.service';
 
 @NgModule({
   declarations: [AppComponent, AuthLayoutComponent, DashboardLayoutComponent],
-  imports: [BrowserModule, AppRoutingModule, DashboardRoutingModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    DashboardRoutingModule,
+    HttpClientModule,
+  ],
   providers: [ConfigService],
   bootstrap: [AppComponent],
 })
