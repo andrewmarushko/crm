@@ -1,0 +1,134 @@
+<h1>{{ title }}</h1>
+<div class="border p-4 rounded-lg bg-gray-50 w-96">
+  <h4>Template Driven Form</h4>
+  <pre>{{ userInfo | json }}</pre>
+  <form>
+    <div>
+      <div class="form-control w-full max-x-xs">
+        <label for="name" class="label">
+          <span class="label-text">First Name</span>
+        </label>
+        <input
+          id="name"
+          type="text"
+          name="firsName"
+          [(ngModel)]="userInfo.firstName"
+          placeholder="First Name"
+          class="input input-bordered w-full max-w-xs"
+        />
+      </div>
+
+      <div class="form-control w-full max-x-xs">
+        <label for="last-name" class="label">
+          <span class="label-text">Last Name</span>
+        </label>
+        <input
+          id="last-name"
+          [(ngModel)]="userInfo.lastName"
+          name="last-name"
+          type="text"
+          placeholder="Last Name"
+          class="input input-bordered w-full max-w-xs"
+        />
+      </div>
+
+      <div class="form-control w-full max-x-xs">
+        <label for="email" class="label">
+          <span class="label-text">Email</span>
+        </label>
+        <input
+          id="email"
+          type="email"
+          placeholder="Email"
+          class="input input-bordered w-full max-w-xs"
+        />
+      </div>
+
+      <div class="form-control w-full max-x-xs">
+        <label for="year-of-birthday" class="label">
+          <span class="label-text">Year of Birthday</span>
+        </label>
+        <select class="select select-bordered" id="year-of-birthday">
+          <option>1992</option>
+        </select>
+      </div>
+      <div class="form-control w-full max-x-xs">
+        <label for="passport" class="label">
+          <span class="label-text">Passport Number</span>
+        </label>
+        <input
+          id="passport"
+          type="text"
+          placeholder="Passport Number"
+          class="input input-bordered w-full max-w-xs"
+        />
+      </div>
+    </div>
+    <fieldset>
+      <legend>Address</legend>
+
+      <div class="form-control w-full max-x-xs">
+        <label for="full-address" class="label">
+          <span class="label-text">Full Address</span>
+        </label>
+        <input
+          id="full-address"
+          type="text"
+          placeholder="Sreet name and house number"
+          class="input input-bordered w-full max-w-xs"
+        />
+      </div>
+
+      <div class="form-control w-full max-x-xs">
+        <label for="city" class="label">
+          <span class="label-text">City</span>
+        </label>
+        <input
+          id="city"
+          type="text"
+          placeholder="City"
+          class="input input-bordered w-full max-w-xs"
+        />
+      </div>
+      <div class="form-control w-full max-x-xs">
+        <label for="post-code" class="label">
+          <span class="label-text">Post Code</span>
+        </label>
+        <input
+          id="post-code"
+          type="number"
+          placeholder="Post Code"
+          class="input input-bordered w-full max-w-xs"
+        />
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>User Password</legend>
+      <div class="form-control w-full max-x-xs">
+        <label for="password" class="label">
+          <span class="label-text">Password</span>
+        </label>
+        <input
+          id="password"
+          type="password"
+          placeholder="Enter user password"
+          class="input input-bordered w-full max-w-xs"
+        />
+      </div>
+
+      <div class="form-control w-full max-x-xs">
+        <label for="confirm-password" class="label">
+          <span class="label-text">Confirm Password</span>
+        </label>
+        <input
+          id="confirm-password"
+          type="password"
+          placeholder="Confirm Password"
+          class="input input-bordered w-full max-w-xs"
+        />
+      </div>
+    </fieldset>
+    <button class="btn btn-primary btn-wide">Save</button>
+    <button class="btn btn-secondary btn-wide" type="reset">Reset</button>
+  </form>
+</div>

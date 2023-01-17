@@ -3,11 +3,15 @@ module.exports = {
   content: ["./src/**/*.{html,ts}"],
   theme: {
     extend: {},
+    container: {
+      center: true,
+    },
   },
   plugins: [
     require("@tailwindcss/typography"),
     require("@tailwindcss/forms"),
     require("@tailwindcss/line-clamp"),
     require("@tailwindcss/aspect-ratio"),
+    require("daisyui"),
   ],
 };
