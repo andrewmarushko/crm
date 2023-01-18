@@ -3,8 +3,6 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-dashboard-layout',
   templateUrl: './dashboard-layout.component.html',
-  styleUrls: ['./dashboard-layout.component.css']
+  styleUrls: ['./dashboard-layout.component.scss'],
 })
-export class DashboardLayoutComponent {
-
-}
+export class DashboardLayoutComponent {}
