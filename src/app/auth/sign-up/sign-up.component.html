@@ -1,1 +1,183 @@
-<p>sign-up works!</p>
+<h3 class="auth-title">Sign up to Coinsender</h3>
+<form [formGroup]="signUpForm" (ngSubmit)="onSubmitForm()">
+  <div>
+    <label>Name</label>
+    <input type="text" placeholder="Type your name" formControlName="name" />
+    <div
+      class="input-error"
+      *ngIf="
+        signUpForm.controls.name.dirty &&
+        signUpForm.controls.name.hasError('required')
+      "
+    >
+      This field is required
+    </div>
+    <div
+      class="input-error"
+      *ngIf="
+        signUpForm.controls.name.dirty &&
+        signUpForm.controls.name.hasError('minlength')
+      "
+    >
+      Field should be more than
+      <strong>{{
+        signUpForm.controls.name.getError("minlength").requiredLength
+      }}</strong>
+      characters
+    </div>
+  </div>
+
+  <div>
+    <label>Surname</label>
+    <input
+      type="text"
+      placeholder="Type your surname"
+      formControlName="second_name"
+    />
+    <div
+      class="input-error"
+      *ngIf="
+        signUpForm.controls.second_name.dirty &&
+        signUpForm.controls.second_name.hasError('required')
+      "
+    >
+      This field is required
+    </div>
+    <div
+      class="input-error"
+      *ngIf="
+        signUpForm.controls.second_name.dirty &&
+        signUpForm.controls.second_name.hasError('minlength')
+      "
+    >
+      Field should be more than
+      <strong>{{
+        signUpForm.controls.second_name.getError("minlength").requiredLength
+      }}</strong>
+      characters
+    </div>
+  </div>
+
+  <div>
+    <label>Company</label>
+    <input
+      type="text"
+      placeholder="Company name"
+      formControlName="company_name"
+    />
+    <div
+      class="input-error"
+      *ngIf="
+        signUpForm.controls.company_name.dirty &&
+        signUpForm.controls.company_name.hasError('required')
+      "
+    >
+      This field is required
+    </div>
+    <div
+      class="input-error"
+      *ngIf="
+        signUpForm.controls.company_name.dirty &&
+        signUpForm.controls.company_name.hasError('minlength')
+      "
+    >
+      Field should be more than
+      <strong>{{
+        signUpForm.controls.company_name.getError("minlength").requiredLength
+      }}</strong>
+      characters
+    </div>
+  </div>
+  <div>
+    <label>Email</label>
+    <input
+      type="email"
+      placeholder="Enter your email"
+      formControlName="email"
+    />
+    <div
+      class="input-error"
+      *ngIf="
+        signUpForm.controls.email.dirty &&
+        signUpForm.controls.email.hasError('required')
+      "
+    >
+      This field is required
+    </div>
+    <div
+      class="input-error"
+      *ngIf="
+        signUpForm.controls.email.dirty &&
+        signUpForm.controls.email.hasError('minlength')
+      "
+    >
+      Field should be more than
+      <strong>{{
+        signUpForm.controls.email.getError("minlength").requiredLength
+      }}</strong>
+      characters
+    </div>
+  </div>
+  <fieldset formGroupName="password">
+    <div>
+      <label>Password</label>
+      <input
+        type="password"
+        placeholder="Enter your password"
+        formControlName="password"
+      />
+      <div
+        class="input-error"
+        *ngIf="
+          signUpForm.controls.password.controls.password.dirty &&
+          signUpForm.controls.password.controls.password.hasError('required')
+        "
+      >
+        This field is required
+      </div>
+      <div
+        class="input-error"
+        *ngIf="
+          signUpForm.controls.password.controls.password.dirty &&
+          signUpForm.controls.password.controls.password.hasError('minlength')
+        "
+      >
+        Field should be more than
+        <strong>{{
+          signUpForm.controls.password.controls.password.getError("minlength")
+            .requiredLength
+        }}</strong>
+        characters
+      </div>
+    </div>
+    <div>
+      <label>Confirm Password</label>
+      <input
+        type="password"
+        placeholder="Confirm your password"
+        formControlName="confirm_password"
+      />
+      <ng-container
+        *ngIf="
+          signUpForm.controls.password.controls
+            .confirm_password as confirmPassword
+        "
+      >
+        <div
+          class="input-error"
+          *ngIf="
+            confirmPassword.hasError('passwordShouldMatch') &&
+            confirmPassword.dirty
+          "
+        >
+          Password don't match
+        </div>
+      </ng-container>
+    </div>
+  </fieldset>
+  <button [disabled]="signUpForm.invalid">Sign Up</button>
+  <div>
+    <span>Already have an account?</span>
+    <a routerLink="/auth/sign-in"> Sign In</a>
+  </div>
+</form>
