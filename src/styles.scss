@@ -1,10 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-
-html,
-body {
-  font-family: "Montserrat", sans-serif;
-  font-weight: normal;
-}
+@import "base.scss";
+@import "colors.scss";
 
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 
@@ -28,13 +24,14 @@ html {
  * Remove the margin in all browsers.
  */
 
-body {
-  margin: 0;
-}
-
 /**
  * Render the `main` element consistently in IE.
  */
+
+body {
+  margin: 0;
+  padding: 0;
+}
 
 main {
   display: block;
@@ -174,6 +171,7 @@ textarea {
   font-size: 100%; /* 1 */
   line-height: 1.15; /* 1 */
   margin: 0; /* 2 */
+  background: var(--input);
 }
 
 /**
@@ -360,22 +358,4 @@ template {
 
 [hidden] {
   display: none;
-}
-
-.ng-valid.ng-dirty:not([formGroupName]):not([formArrayName]):not(
-    [ngModelGroup]
-  ):not(form) {
-  border: 2px solid green;
-}
-
-.ng-invalid.ng-dirty:not([formGroupName="password"]):not([formArrayName]):not(
-    [ngModelGroup]
-  ):not(form) {
-  border: 2px solid red;
-}
-
-button[disabled] {
-  background-color: rgba($color: #000000, $alpha: 0.15);
-  border-color: rgba($color: #000000, $alpha: 0.1);
-  pointer-events: none;
 }

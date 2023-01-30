@@ -1,0 +1,50 @@
+@import "./colors.scss";
+@import "./mixins.scss";
+
+// Elevations
+$elevation-form: 0px 5px 18px;
+$elevation-form-color: rgba(40, 41, 61, 0.07);
+
+$elevation-medium: 0px 4px 22px;
+$elevation-medium-color: rgba(0, 0, 0, 0.06);
+
+$elevation-card: 0px 7px 20px;
+$elevation-card-color: rgba(40, 41, 61, 0.08);
+
+$elevation-regular: 0px 4px 23px;
+$elevation-regular-color: rgba(0, 0, 0, 0.12);
+
+$elevation-base: 1px 5px 22px 4px;
+$elevation-base-color: rgba(0, 0, 0, 0.15);
+
+$elevation-large: $elevation-base;
+$elevation-large-color: $elevation-base-color;
+
+$elevation-badge: 0px 2px 8px;
+$elevation-badge-color: rgba(40, 41, 61, 0.08),
+  0px 20px 32px rgba(96, 97, 112, 0.24);
+
+.shadow-form {
+  @include shadow-radius($elevation-form, $elevation-form-color);
+}
+
+.shadow-medium {
+  @include shadow-radius($elevation-medium, $elevation-medium-color);
+}
+
+.shadow-card {
+  @include shadow-radius($elevation-card, $elevation-card-color);
+}
+
+.shadow-regular {
+  @include shadow-radius($elevation-regular, $elevation-regular-color);
+}
+
+.shadow-base {
+  @include shadow-radius($elevation-base, $elevation-base-color);
+}
+
+.shadow-badge {
+  box-shadow: 0px 2px 8px rgba(40, 41, 61, 0.08),
+    0px 20px 32px rgba(96, 97, 112, 0.24);
+}

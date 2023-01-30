@@ -1,0 +1,44 @@
+:root {
+  --primary: #08445e;
+
+  --primary-light: #f5fefb;
+  --secondary-light: #070f65;
+  --error-light: #932825;
+  --text-color-light: #121625;
+  --accent-light: $color-pink;
+  --input-light: #f5fefb;
+
+  --primary-dark: #031e2a;
+  --secondary-dark: #2940d3;
+  --error-dark: #ff403b;
+  --text-color-dark: #f5fefb;
+  --input-dark: #167e8d;
+}
+
+$color-primary: #08445e;
+$color-primary-100: #0e5c72;
+$color-primary-200: #167e8d;
+$color-primary-300: #20a4a9;
+$color-primary-400: #2cc5bd;
+$color-primary-500: #5bdcca;
+$color-primary-600: #7eedd4;
+$color-primary-700: #d4fcec;
+$color-primary-800: #ecfef7;
+$color-primary-900: #f5fefb;
+
+$color-secondary: #070f65;
+$color-secondary-100: #0d177a;
+$color-secondary-200: #142297;
+$color-secondary-300: #1d30b5;
+$color-secondary-400: #2940d3;
+$color-secondary-500: #5a6fe4;
+$color-secondary-600: #7c90f1;
+$color-secondary-700: #a9b8fa;
+$color-secondary-800: #e6ecfe;
+$color-secondary-900: #f1f4fe;
+
+$color-primary-dark: #031e2a;
+$color-pink: #ff6b93;
+$color-primary-text-light: #121625;
+$color-error: #932825;
+$color-error-dark: #ff403b;

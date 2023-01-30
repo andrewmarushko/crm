@@ -1,4 +1,5 @@
-@import "../../shared/reusable-styles.scss";
+@import "colors.scss";
+@import "base.scss";
 
 .auth-title {
   font-size: 28px;
@@ -28,5 +29,5 @@
 
 .input-error {
   @include input-message();
-  color: red;
+  color: $color-error;
 }
