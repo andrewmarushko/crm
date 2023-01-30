@@ -1,1 +1,243 @@
-<p>sign-up works!</p>
+<div class="wrapper">
+  <div class="title">Sign Up</div>
+  <div class="form-wrapper">
+    <form [formGroup]="form" class="form" action="">
+      <div class="form__item">
+        <div class="form__item--group-input">
+          <label class="input__wrapper--label" for="name">Name: </label>
+          <input
+            class="input input-small"
+            formControlName="name"
+            id="name"
+            type="text"
+          />
+          <div
+            class="error-message"
+            *ngIf="
+              form.controls.name.dirty &&
+              form.controls.name.hasError('required')
+            "
+          >
+            Required
+          </div>
+          <div
+            class="error-message"
+            *ngIf="
+              form.controls.name.dirty &&
+              form.controls.name.hasError('minlength')
+            "
+          >
+            Min length
+            {{ form.controls.name.getError("minlength").requiredLength }}
+          </div>
+          <div
+            class="error-message"
+            *ngIf="
+              form.controls.name.dirty &&
+              form.controls.name.hasError('maxlength')
+            "
+          >
+            Max length
+            {{ form.controls.name.getError("maxlength").requiredLength }}
+          </div>
+        </div>
+        <div class="form__item--group-input">
+          <label class="input__wrapper--label" for="name">Surname: </label>
+          <input
+            class="input input-small"
+            formControlName="surname"
+            id="name"
+            type="text"
+          />
+          <div
+            class="error-message"
+            *ngIf="
+              form.controls.surname.dirty &&
+              form.controls.surname.hasError('required')
+            "
+          >
+            Required
+          </div>
+          <div
+            class="error-message"
+            *ngIf="
+              form.controls.surname.dirty &&
+              form.controls.surname.hasError('minlength')
+            "
+          >
+            Min length
+            {{ form.controls.surname.getError("minlength").requiredLength }}
+          </div>
+          <div
+            class="error-message"
+            *ngIf="
+              form.controls.surname.dirty &&
+              form.controls.surname.hasError('maxlength')
+            "
+          >
+            Max length
+            {{ form.controls.surname.getError("maxlength").requiredLength }}
+          </div>
+        </div>
+      </div>
+      <div class="form__item">
+        <div class="form__item--group-input">
+          <label class="input__wrapper--label" for="company">Comapny: </label>
+          <input
+            class="input input-large"
+            formControlName="company"
+            id="company"
+            type="text"
+          />
+        </div>
+
+        <div
+          class="error-message"
+          *ngIf="
+            form.controls.company.dirty &&
+            form.controls.company.hasError('required')
+          "
+        >
+          Required
+        </div>
+        <div
+          class="error-message"
+          *ngIf="
+            form.controls.company.dirty &&
+            form.controls.company.hasError('minlength')
+          "
+        >
+          Min length
+          {{ form.controls.company.getError("minlength").requiredLength }}
+        </div>
+        <div
+          class="error-message"
+          *ngIf="
+            form.controls.company.dirty &&
+            form.controls.company.hasError('maxlength')
+          "
+        >
+          Max length
+          {{ form.controls.company.getError("maxlength").requiredLength }}
+        </div>
+      </div>
+      <div class="form__item">
+        <div class="form__item--group-input">
+          <label class="input__wrapper--label" for="email">Email: </label>
+          <input
+            class="input input--large"
+            formControlName="email"
+            id="email"
+            type="text"
+          />
+        </div>
+
+        <div
+          class="error-message"
+          *ngIf="
+            form.controls.email.dirty &&
+            form.controls.email.hasError('required')
+          "
+        >
+          Required
+        </div>
+        <div
+          class="error-message"
+          *ngIf="
+            form.controls.email.dirty && form.controls.email.hasError('email')
+          "
+        >
+          Incorrect email
+        </div>
+      </div>
+      <div class="form__item">
+        <div class="form__item--group-input">
+          <label class="input__wrapper--label" for="password">Password: </label>
+          <input
+            class="input input-small"
+            formControlName="password"
+            id="password"
+            type="text"
+          />
+          <div
+            class="error-message"
+            *ngIf="
+              form.controls.passwords.controls.password.dirty &&
+              form.controls.passwords.controls.password.hasError('required')
+            "
+          >
+            Required
+          </div>
+          <div
+            class="error-message"
+            *ngIf="
+              form.controls.passwords.controls.password.dirty &&
+              form.controls.passwords.controls.password.hasError('minlength')
+            "
+          >
+            Min length
+            {{
+              form.controls.passwords.controls.password.getError("minlength")
+                .requiredLength
+            }}
+          </div>
+        </div>
+        <div class="form__item--group-input">
+          <label class="input__wrapper--label" for="confirmPassword"
+            >Confirm Password:
+          </label>
+          <input
+            formControlName="confirmPassword"
+            id="confirmPassword"
+            type="text"
+            class="input input-small"
+          />
+          <div
+            class="error-message"
+            *ngIf="
+              form.controls.passwords.controls.confirmPassword.dirty &&
+              form.controls.passwords.controls.confirmPassword.hasError(
+                'required'
+              )
+            "
+          >
+            Required
+          </div>
+          <div
+            class="error-message"
+            *ngIf="
+              form.controls.passwords.controls.confirmPassword.dirty &&
+              form.controls.passwords.controls.confirmPassword.hasError(
+                'minlength'
+              )
+            "
+          >
+            Min length
+            {{
+              form.controls.passwords.controls.confirmPassword.getError(
+                "minlength"
+              ).requiredLength
+            }}
+          </div>
+          <div
+            class="error-message"
+            *ngIf="
+              form.controls.passwords.controls.confirmPassword.dirty &&
+              form.controls.passwords.controls.confirmPassword.hasError(
+                'passwordShouldMatch'
+              )
+            "
+          >
+            Are not the same!
+          </div>
+        </div>
+      </div>
+    </form>
+    <div>
+      <button>Sign up for free</button>
+    </div>
+    <div class="go_login">
+      Do you already have an account? <span>Log in</span>
+    </div>
+  </div>
+</div>

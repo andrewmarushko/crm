@@ -1,0 +1,120 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-family: "M PLUS 1", sans-serif;
+}
+
+div {
+  width: 100%;
+}
+
+@mixin input {
+  background: #f5f5f7;
+  height: 44px;
+  border: 1px solid #e3e6eb;
+  border-radius: 8px;
+  padding-left: 10px;
+  width: 100%;
+}
+
+@keyframes error-animation {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.items {
+  display: flex;
+  gap: 28px;
+}
+
+.wrapper {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .form-wrapper {
+    width: 491px;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+
+    .form {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      &__item {
+        display: flex;
+        gap: 28px;
+
+        &--group-input {
+          display: flex;
+          flex-direction: column;
+          gap: 9px;
+          font-family: "M PLUS 1", sans-serif;
+          position: relative;
+          .input {
+            @include input;
+            &--small {
+              max-width: 232px;
+            }
+            &--large {
+              max-width: 492px;
+            }
+          }
+        }
+      }
+    }
+    button {
+      background: #2940d3;
+      width: 100%;
+      color: white;
+      padding: 10px 0;
+      border-radius: 6px;
+      border: none;
+    }
+    .go_login {
+      text-align: center;
+      color: #121625;
+      font-weight: 500;
+      font-size: 14px;
+      span {
+        color: #2940d3;
+      }
+    }
+  }
+
+  .title {
+    text-align: center;
+    font-weight: 800;
+    font-size: 32px;
+    margin-bottom: 42px;
+  }
+
+  .input__wrapper {
+    &--label {
+      font-weight: 600px;
+      font-size: 14px;
+    }
+  }
+}
+
+.error-message {
+  position: absolute;
+  top: 105%;
+  font-size: 10px;
+  color: red;
+  animation: error-animation;
+  animation-duration: 300ms;
+}
