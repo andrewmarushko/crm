@@ -1,6 +1,7 @@
 <h3 class="auth-title">Sign up to Coinsender</h3>
 <form [formGroup]="signUpForm" (ngSubmit)="onSubmitForm()">
-  <div>
+  <app-text-input [control]="signUpForm.controls.name"></app-text-input>
+  <div class="form-control">
     <label>Name</label>
     <input type="text" placeholder="Type your name" formControlName="name" />
     <div
@@ -27,7 +28,7 @@
     </div>
   </div>
 
-  <div>
+  <div class="form-control">
     <label>Surname</label>
     <input
       type="text"
@@ -58,7 +59,7 @@
     </div>
   </div>
 
-  <div>
+  <div class="form-control">
     <label>Company</label>
     <input
       type="text"
@@ -88,7 +89,7 @@
       characters
     </div>
   </div>
-  <div>
+  <div class="form-control">
     <label>Email</label>
     <input
       type="email"
@@ -118,8 +119,8 @@
       characters
     </div>
   </div>
-  <fieldset formGroupName="password">
-    <div>
+  <div formGroupName="password">
+    <div class="form-control">
       <label>Password</label>
       <input
         type="password"
@@ -150,7 +151,7 @@
         characters
       </div>
     </div>
-    <div>
+    <div class="form-control">
       <label>Confirm Password</label>
       <input
         type="password"
@@ -174,7 +175,7 @@
         </div>
       </ng-container>
     </div>
-  </fieldset>
+  </div>
   <button [disabled]="signUpForm.invalid">Sign Up</button>
   <div>
     <span>Already have an account?</span>
