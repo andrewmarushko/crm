@@ -7,10 +7,16 @@ import { AppComponent } from './app.component';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 import { DashboardLayoutComponent } from './layouts/dashboard-layout/dashboard-layout.component';
 import { ConfigService } from './dashboard/dashboard.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent, AuthLayoutComponent, DashboardLayoutComponent],
-  imports: [BrowserModule, AppRoutingModule, DashboardRoutingModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    DashboardRoutingModule,
+    HttpClientModule,
+  ],
   providers: [ConfigService],
   bootstrap: [AppComponent],
 })

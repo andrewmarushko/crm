@@ -1,0 +1,42 @@
+<h3 class="prose prose-2xl">{{ title }}</h3>
+<form #form="ngForm" (ngSubmit)="login(form)">
+  <div class="form-control">
+    <label class="label" for="email"
+      ><span class="label-text">Email</span></label
+    >
+    <input
+      class="input input-bordered"
+      required
+      placeholder="Email"
+      type="email"
+      name="email"
+      [(ngModel)]="loginForm.email"
+    />
+  </div>
+  <div class="form-control">
+    <label class="label" for="password"
+      ><span class="label-text">Password</span></label
+    >
+    <input
+      class="input input-bordered"
+      placeholder="Password"
+      type="password"
+      required
+      name="password"
+      [(ngModel)]="loginForm.password"
+    />
+  </div>
+  <div class="w-full">
+    <a routerLink="/auth/forgot-password">Forgot Password?</a>
+    <a routerLink="/auth/sign-up">Sign Up</a>
+  </div>
+  <div class="w-full">
+    <button
+      [disabled]="form.invalid"
+      class="btn btn-primary w-full"
+      type="submit"
+    >
+      Login
+    </button>
+  </div>
+</form>
