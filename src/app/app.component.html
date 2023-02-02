@@ -1,3 +1,4 @@
-<div class="dark">
+<div [ngClass]="currentTheme">
+  <button (click)="onChangeTheme(currentTheme)">Change Theme</button>
   <router-outlet></router-outlet>
 </div>

@@ -9,6 +9,7 @@ import { DashboardLayoutComponent } from './layouts/dashboard-layout/dashboard-l
 import { ConfigService } from './dashboard/dashboard.service';
 import { SharedUiModule } from './shared/shared-ui.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AppService } from './app.service';
 
 @NgModule({
   declarations: [AppComponent, AuthLayoutComponent, DashboardLayoutComponent],
@@ -21,7 +22,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     SharedUiModule,
   ],
-  providers: [ConfigService],
+  providers: [ConfigService, AppService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
