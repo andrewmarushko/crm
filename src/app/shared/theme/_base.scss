@@ -1,0 +1,23 @@
+.dark {
+  background: var(--primary-dark);
+  color: var(--text-color-dark);
+  font-family: "Montserrat", sans-serif;
+  font-weight: normal;
+  margin: 0;
+
+  input {
+    background: var(--input-dark);
+  }
+}
+
+.light {
+  background: var(--primary-light);
+  color: var(--text-color);
+  font-family: "Montserrat", sans-serif;
+  font-weight: normal;
+  margin: 0;
+
+  input {
+    background: var(--input-light);
+  }
+}
