@@ -3,7 +3,8 @@ import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-text-input',
-  template: ` <input [formControl]="control" /> `,
+  template: ` <input class="input" [formControl]="control" /> `,
+  styleUrls: ['./text-input.component.scss'],
 })
 export class TextFieldComponent {
   @Input() control: FormControl;

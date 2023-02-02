@@ -1,0 +1,25 @@
+main {
+  background: var(--primary);
+  color: var(--color-text);
+  font-family: var(--primary-font-family);
+  font-weight: var(--primary-font-weight);
+  font-size: var(--primary-font-size);
+}
+
+.btn {
+  padding: 16px 24px;
+  color: var(--cta-text-color);
+  background: var(--cta-primary);
+  border: none;
+  outline: none;
+  border-radius: 8px;
+  cursor: pointer;
+
+  &:hover {
+    filter: brightness(150%);
+  }
+}
+
+.error {
+  color: var(--error-color);
+}

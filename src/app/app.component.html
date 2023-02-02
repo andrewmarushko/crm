@@ -1,4 +1,7 @@
-<div [ngClass]="currentTheme">
-  <button (click)="onChangeTheme(currentTheme)">Change Theme</button>
+<main [ngClass]="currentTheme">
+  <button class="btn" (click)="onChangeTheme(currentTheme)">
+    Change Theme
+  </button>
+  <span class="error">lkasjdalks aksldj a</span>
   <router-outlet></router-outlet>
-</div>
+</main>

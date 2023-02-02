@@ -9,7 +9,6 @@ import { AppService } from './app.service';
 })
 export class AppComponent implements OnInit, OnDestroy {
   currentTheme: string;
-  title = 'cs20';
   themeSubscription: Subscription;
 
   constructor(private themeService: AppService) {}

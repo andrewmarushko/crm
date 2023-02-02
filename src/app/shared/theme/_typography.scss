@@ -1,0 +1,43 @@
+$h1-size: 28px;
+$h2-size: 24px;
+$h3-size: 18px;
+
+$p-size: 18px;
+
+$span-size: 18px;
+$button-size: 13px;
+
+h1 {
+  font-size: $h1-size;
+}
+h2 {
+  font-size: $h2-size;
+}
+h3 {
+  font-size: $h3-size;
+}
+
+p {
+  font-size: $p-size;
+}
+
+span {
+  font-size: $span-size;
+}
+
+h1,
+h2,
+h3,
+p,
+span {
+  font-weight: 600;
+}
+
+p,
+span {
+  font-weight: 400;
+}
+
+button {
+  font-size: $button-size;
+}
