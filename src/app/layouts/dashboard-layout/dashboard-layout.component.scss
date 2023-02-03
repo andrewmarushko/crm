@@ -1,0 +1,24 @@
+.layout-container {
+  display: grid;
+  height: 100vh;
+  grid-template-columns: 300px 1fr;
+  grid-template-rows: 60px 1fr;
+  grid-template-areas:
+    "sidebar header"
+    "sidebar main";
+}
+
+header {
+  grid-area: header;
+  border: 1px solid var(--primary);
+}
+
+.sidebar {
+  grid-area: sidebar;
+  border: 1px solid var(--primary);
+}
+
+section.main {
+  grid-area: main;
+  border: 1px solid var(--primary);
+}

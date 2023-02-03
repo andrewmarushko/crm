@@ -2,3 +2,13 @@
 @import "base.scss";
 @import "colors.scss";
 @import "typography.scss";
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  height: 100vh;
+  box-sizing: border-box;
+}
