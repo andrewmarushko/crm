@@ -3,6 +3,7 @@
 @import "base.scss";
 @import "colors.scss";
 @import "typography.scss";
+@import "variables.scss";
 
 * {
   padding: 0;
@@ -19,4 +20,5 @@ input {
   display: flex;
   flex-direction: column;
   gap: 24px;
+  @include typography($base-font-size);
 }
