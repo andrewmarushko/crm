@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { AuthGuard } from './services/auth/auth.guard';
 import { AuthService } from './services/auth/auth.service';
 import { UserService } from './services/user.service';
 // import { AuthService } from './services/auth/auth.service';
@@ -24,6 +25,6 @@ import { TextFieldComponent } from './ui/text-input/text-input.component';
     SidebarComponent,
     NavigationComponent,
   ],
-  providers: [AuthService, UserService],
+  providers: [AuthService, UserService, AuthGuard],
 })
 export class SharedUiModule {}
