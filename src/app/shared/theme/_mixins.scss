@@ -70,3 +70,27 @@
   margin: ($size + 4) * ($font-size / 16);
   padding: ($size + 4) * ($font-size / 16);
 }
+
+@mixin container(
+  $widths: (
+    sm: 720px,
+    md: 960px,
+    lg: 1140px,
+  ),
+  $width: auto
+) {
+  width: $width;
+  max-width: 100%;
+  margin: 0 auto;
+
+  @each $breakpoint, $value in $widths {
+    @media (min-width: map-get($breakpoints, $breakpoint)) {
+      max-width: $value;
+      width: $value;
+    }
+  }
+
+  @media (max-width: map-get($breakpoints, sm)) {
+    width: 100%;
+  }
+}
