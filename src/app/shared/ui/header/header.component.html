@@ -1,1 +1,3 @@
-<header class="header">header moz</header>
+<header class="header" *ngIf="user$ | async as user">
+  User: {{ user.email }}
+</header>
