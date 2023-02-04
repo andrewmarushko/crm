@@ -3,13 +3,3 @@
 .container {
   @include container;
 }
-
-.layout-container {
-  display: grid;
-  height: 100vh;
-  grid-template-columns: 300px 1fr;
-  grid-template-rows: 60px 1fr;
-  grid-template-areas:
-    "sidebar header"
-    "sidebar main";
-}
