@@ -15,10 +15,3 @@ input {
   border-radius: 8px;
   outline: none;
 }
-
-.form {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  @include typography($base-font-size);
-}

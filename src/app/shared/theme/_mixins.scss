@@ -65,10 +65,13 @@
   }
 }
 
-@mixin spacing($size) {
+@mixin spacing($vertical, $horizontal) {
   $font-size: 16px;
-  margin: ($size + 4) * ($font-size / 16);
-  padding: ($size + 4) * ($font-size / 16);
+
+  margin: ($vertical + 4) * ($font-size / 16) ($horizontal + 4) *
+    ($font-size / 16);
+  padding: ($vertical + 4) * ($font-size / 16) ($horizontal + 4) *
+    ($font-size / 16);
 }
 
 @mixin container(
