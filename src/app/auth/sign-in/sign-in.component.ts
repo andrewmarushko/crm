@@ -1,5 +1,6 @@
 import { FormBuilder, Validators } from '@angular/forms';
 import { Component } from '@angular/core';
+import { AuthService } from '@shared/services/auth/auth.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -7,7 +8,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./sign-in.component.scss'],
 })
 export class SignInComponent {
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private authService: AuthService) {}
 
   signInForm = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
@@ -16,5 +17,6 @@ export class SignInComponent {
 
   onSubmitForm() {
     console.log(this.signInForm.value);
+    this.authService.signIn().subscribe((res) => console.log(res));
   }
 }

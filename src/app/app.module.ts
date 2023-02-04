@@ -10,6 +10,13 @@ import { ConfigService } from './dashboard/dashboard.service';
 import { SharedUiModule } from './shared/shared-ui.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppService } from './app.service';
+import {
+  HttpClient,
+  HttpClientModule,
+  HTTP_INTERCEPTORS,
+} from '@angular/common/http';
+import { TokenInterceptor } from '@shared/services/auth/auth.interceptor';
+import { AuthService } from '@shared/services/auth/auth.service';
 
 @NgModule({
   declarations: [AppComponent, AuthLayoutComponent, DashboardLayoutComponent],
@@ -20,9 +27,17 @@ import { AppService } from './app.service';
     DashboardRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    SharedUiModule,
+    HttpClientModule,
   ],
-  providers: [ConfigService, AppService],
+  providers: [
+    ConfigService,
+    AppService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
