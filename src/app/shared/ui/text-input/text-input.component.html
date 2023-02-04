@@ -1,4 +1,10 @@
 <div class="form-control">
-  <label for="">sldkasd</label>
-  <input class="input" [formControl]="control" />
+  <label [for]="id" class="label">{{ label }}</label>
+  <input
+    class="input"
+    [type]="type"
+    [placeholder]="placeholder"
+    [id]="id"
+    [formControl]="control"
+  />
 </div>

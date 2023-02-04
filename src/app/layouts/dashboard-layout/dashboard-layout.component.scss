@@ -1,3 +1,10 @@
+@import "layout.scss";
+
+section.main {
+  grid-area: main;
+  border: 1px solid var(--primary);
+}
+
 .layout-container {
   display: grid;
   height: 100vh;
@@ -8,17 +15,10 @@
     "sidebar main";
 }
 
-header {
+app-header {
   grid-area: header;
-  border: 1px solid var(--primary);
 }
-
-.sidebar {
+app-sidebar {
   grid-area: sidebar;
-  border: 1px solid var(--primary);
-}
-
-section.main {
-  grid-area: main;
   border: 1px solid var(--primary);
 }
