@@ -3,6 +3,7 @@
 
 .auth-title {
   text-align: center;
+  margin-bottom: 40px;
 }
 
 @keyframes input-message-animation {
@@ -27,4 +28,14 @@
 .input-error {
   @include input-message();
   color: $color-error;
+}
+
+.form-group {
+  display: flex;
+  justify-content: space-between;
+  gap: 28px;
+
+  div {
+    width: 100%;
+  }
 }

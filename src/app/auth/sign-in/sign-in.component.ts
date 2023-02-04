@@ -1,3 +1,4 @@
+import { FormBuilder, Validators } from '@angular/forms';
 import { Component } from '@angular/core';
 
 @Component({
@@ -6,7 +7,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./sign-in.component.scss'],
 })
 export class SignInComponent {
-  constructor() {
-    console.log(123);
+  constructor(private fb: FormBuilder) {}
+
+  signInForm = this.fb.group({
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required, Validators.minLength(3)]],
+  });
+
+  onSubmitForm() {
+    console.log(this.signInForm.value);
   }
 }

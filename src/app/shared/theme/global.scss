@@ -6,12 +6,19 @@
 @import "variables.scss";
 
 * {
-  margin: 0;
   padding: 0;
-}
-
-body {
-  height: 100vh;
+  margin: 0;
   box-sizing: border-box;
   @include typography($base-font-size);
+}
+
+input {
+  border-radius: 8px;
+  outline: none;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }
