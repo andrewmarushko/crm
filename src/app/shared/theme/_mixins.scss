@@ -1,4 +1,72 @@
+@import "variables.scss";
+
 @mixin shadow-radius($shadow, $shadow-color) {
   border-radius: 8px;
   box-shadow: $shadow $shadow-color;
+}
+
+@mixin media-screen($breakpoint) {
+  $breakpoints: (
+    xs: (
+      max-width: $xs-max,
+    ),
+    sm: (
+      min-width: $sm-min,
+    )
+    and
+    (
+      max-width: $sm-max,
+    ),
+    md: (
+      min-width: $md-min,
+    )
+    and
+    (
+      max-width: $md-max,
+    ),
+    lg: (
+      min-width: $lg-min,
+    )
+    and
+    (
+      max-width: $lg-max,
+    ),
+    xl: (
+      min-width: $xl-min,
+    ),
+  );
+
+  @each $point, $query in $breakpoints {
+    @if $breakpoint == $point {
+      @media #{$query} {
+        @content;
+      }
+    }
+  }
+}
+
+@mixin typography(
+  $font-size,
+  $line-height: 1.75,
+  $font-weight: 400,
+  $letter-spacing: 0,
+  $mobile-font-size: $font-size * 0.85,
+  $mobile-line-height: $line-height
+) {
+  font-size: $font-size;
+  line-height: $line-height;
+  font-weight: $font-weight;
+  letter-spacing: $letter-spacing;
+  font-family: $font-stack;
+
+  @media (max-width: 767px) {
+    font-size: $mobile-font-size;
+    line-height: $mobile-line-height;
+  }
+}
+
+@mixin spacing($size) {
+  $font-size: 16px;
+  margin: ($size + 4) * ($font-size / 16);
+  padding: ($size + 4) * ($font-size / 16);
 }
