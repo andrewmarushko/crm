@@ -1,5 +1,5 @@
 .input {
-  border: 1px solid #82868c;
+  border: 1px solid var(--cta-primary);
   padding: 10px 15px;
   font-size: 14px;
   background: inherit;
@@ -8,7 +8,7 @@
 
 .form-control {
   display: flex;
+  flex: 1;
   flex-direction: column;
   gap: 9px;
-  margin-bottom: 24px;
 }

@@ -1,1 +1,72 @@
-<p>sign-in works!</p>
+<h1 class="auth-title">Sign in to Coinsender</h1>
+<form [formGroup]="signInForm" class="form" (ngSubmit)="onSubmitForm()">
+  <div class="form-control">
+    <app-text-input
+      id="email"
+      label="Email"
+      type="email"
+      placeholder="Enter your email"
+      [control]="signInForm.controls.email"
+    ></app-text-input>
+
+    <div
+      class="input-error"
+      *ngIf="
+        signInForm.controls.email.dirty &&
+        signInForm.controls.email.hasError('required')
+      "
+    >
+      This field is required
+    </div>
+    <div
+      class="input-error"
+      *ngIf="
+        signInForm.controls.email.dirty &&
+        signInForm.controls.email.hasError('minlength')
+      "
+    >
+      Field should be more than
+      <strong>{{
+        signInForm.controls.email.getError("minlength").requiredLength
+      }}</strong>
+      characters
+    </div>
+  </div>
+  <div class="form-control">
+    <app-text-input
+      id="email"
+      label="Password"
+      type="password"
+      placeholder="Enter your password"
+      [control]="signInForm.controls.password"
+    ></app-text-input>
+    <div
+      class="input-error"
+      *ngIf="
+        signInForm.controls.password.dirty &&
+        signInForm.controls.password.hasError('required')
+      "
+    >
+      This field is required
+    </div>
+    <div
+      class="input-error"
+      *ngIf="
+        signInForm.controls.password &&
+        signInForm.controls.password.hasError('minlength')
+      "
+    >
+      Field should be more than
+      <strong>{{
+        signInForm.controls.password.getError("minlength").requiredLength
+      }}</strong>
+      characters
+    </div>
+  </div>
+
+  <button class="btn" [disabled]="signInForm.invalid">Sign Up</button>
+  <div>
+    <span>Already have an account?</span>
+    <a routerLink="/auth/sign-up"> Sign In</a>
+  </div>
+</form>
