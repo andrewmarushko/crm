@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { UserInterface, UserService } from '@shared/services/user.service';
+import {
+  CurrentUserInterface,
+  UserService,
+} from '@shared/services/user.service';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -8,7 +11,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  user$: Observable<UserInterface>;
+  user$: Observable<CurrentUserInterface>;
 
   constructor(private userService: UserService) {}
 

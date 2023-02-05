@@ -1,6 +1,9 @@
 import { FormBuilder, Validators } from '@angular/forms';
 import { Component } from '@angular/core';
-import { AuthService } from '@shared/services/auth/auth.service';
+import {
+  AuthRequestInterface,
+  AuthService,
+} from '@shared/services/auth/auth.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -16,7 +19,8 @@ export class SignInComponent {
   });
 
   onSubmitForm() {
-    console.log(this.signInForm.value);
-    this.authService.signIn().subscribe((res) => console.log(res));
+    this.authService
+      .signIn(this.signInForm.value as AuthRequestInterface)
+      .subscribe((res) => console.log(res));
   }
 }

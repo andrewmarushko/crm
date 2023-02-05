@@ -8,17 +8,18 @@ import {
 
 import { CookieService } from 'ngx-cookie-service';
 
-import { Observable } from 'rxjs';
+import { catchError, Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
-  constructor(private cookieService: CookieService) {}
+  constructor(private router: Router) {}
 
   intercept(
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    const accessToken = this.cookieService.get('Authentication');
+    const accessToken = localStorage.getItem('access');
 
     if (accessToken) {
       req = req.clone({
@@ -28,6 +29,15 @@ export class TokenInterceptor implements HttpInterceptor {
       });
     }
 
-    return next.handle(req).pipe();
+    return next
+      .handle(req)
+      .pipe
+      // catchError((error) => {
+      //   if (error.status === 401) {
+      //     const refresh = localStorage.getItem('refresh');
+
+      //   }
+      // })
+      ();
   }
 }
