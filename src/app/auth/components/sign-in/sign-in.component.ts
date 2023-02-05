@@ -1,5 +1,7 @@
 import { FormBuilder, Validators } from '@angular/forms';
 import { Component } from '@angular/core';
+import { AuthService } from '@auth/services/auth/auth.service';
+import { AuthRequestInterface } from '@auth/types/auth.interface';
 
 @Component({
   selector: 'app-sign-in',
@@ -7,7 +9,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./sign-in.component.scss'],
 })
 export class SignInComponent {
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private authService: AuthService) {}
 
   signInForm = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
@@ -15,6 +17,8 @@ export class SignInComponent {
   });
 
   onSubmitForm() {
-    console.log(this.signInForm.value);
+    this.authService
+      .signIn(this.signInForm.value as AuthRequestInterface)
+      .subscribe((res) => console.log(res));
   }
 }

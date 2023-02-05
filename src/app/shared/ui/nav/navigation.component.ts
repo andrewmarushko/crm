@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, Routes } from '@angular/router';
 
-import { dashboardRoutes } from 'app/dashboard/dashboard-routing.module';
+import { dashboardRoutes } from '@dashboard/modules/dashboard-routing.module';
 
 @Component({
   selector: 'app-nav',

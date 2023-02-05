@@ -1,4 +1,10 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {
+  Component,
+  enableProdMode,
+  isDevMode,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 import { Subscriber, Subscription } from 'rxjs';
 import { AppService } from './app.service';
 
@@ -14,6 +20,13 @@ export class AppComponent implements OnInit, OnDestroy {
   constructor(private themeService: AppService) {}
 
   ngOnInit(): void {
+    if (isDevMode()) {
+      console.log('Development!');
+    } else {
+      console.log('Production!');
+      enableProdMode();
+    }
+
     this.themeSubscription = this.themeService
       .getCurrentTheme()
       .subscribe((theme) => {

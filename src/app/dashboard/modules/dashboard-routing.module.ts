@@ -1,18 +1,22 @@
-import { DashboardComponent } from './dashboard.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ClientsComponent } from './components/clients/clients.component';
+
+import { DashboardComponent } from '@dashboard/components/dashboard/dashboard.component';
+import { ClientsComponent } from '@dashboard/components/clients/clients.component';
+import { AuthGuard } from '@auth/guards/auth.guard';
 
 export const dashboardRoutes: Routes = [
   {
     path: 'invoice',
     title: 'Invoices',
     component: DashboardComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'clients',
     title: 'Clients',
     component: ClientsComponent,
+    canActivate: [AuthGuard],
   },
 ];
 

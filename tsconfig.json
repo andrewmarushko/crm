@@ -7,7 +7,11 @@
       "@shared/*": ["app/shared/*"],
       "@layouts/*": ["app/layouts/*"],
       "@theme/*": ["app/shared/theme/*"],
-      "@ui/*": ["app/shared/ui/*"]
+      "@ui/*": ["app/shared/ui/*"],
+      "@env/*": ["app/environment/*"],
+      "@auth/*": ["app/auth/*"],
+      "@dashboard/*": ["app/dashboard/*"],
+      "@helpers/*": ["app/helpers/*"],
     },
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,

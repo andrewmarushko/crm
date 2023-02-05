@@ -4,7 +4,5 @@ import { Injectable } from '@angular/core';
 export class ConfigService {
   constructor() {}
 
-  getUsers() {
-    console.log('lol');
-  }
+  getUsers() {}
 }
