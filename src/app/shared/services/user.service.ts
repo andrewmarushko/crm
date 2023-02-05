@@ -60,7 +60,7 @@ const initialState: CurrentUserInterface = {
   },
 };
 
-@Injectable({ providedIn: 'root' })
+@Injectable()
 export class UserService {
   private data = new BehaviorSubject<CurrentUserInterface>(initialState);
   user$: Observable<CurrentUserInterface> = this.data.asObservable();

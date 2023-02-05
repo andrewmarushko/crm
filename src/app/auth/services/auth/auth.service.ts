@@ -1,27 +1,30 @@
+import { Router } from '@angular/router';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '@env/environment';
-import { CookieService } from 'ngx-cookie-service';
-import { throwError } from 'rxjs';
+import { BehaviorSubject, throwError, Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-import { UserService } from '../user.service';
-
-export function getCookie(cookieName: any) {
-  let cookie: any = {};
-  document.cookie.split(';').forEach(function (el) {
-    let [key, value] = el.split('=');
-    cookie[key.trim()] = value;
-  });
-  return cookie[cookieName];
-}
+import { UserService } from '@shared/services/user.service';
+import {
+  AuthResponseInterface,
+  CreateUserRequestInterface,
+} from '@auth/types/auth.interface';
+import { AuthRequestInterface } from '@auth/types/auth.interface';
+import { getCookie } from '@helpers/cookies.helper';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   constructor(
     private httpClient: HttpClient,
     private userService: UserService,
-    private cookieService: CookieService
+    private router: Router
   ) {}
+
+  private error = new BehaviorSubject<ErrorResponseInterface>({
+    statusCode: null,
+    message: '',
+  });
+  errorMessage$: Observable<ErrorResponseInterface> = this.error.asObservable();
 
   signIn(credentials: AuthRequestInterface) {
     return this.httpClient
@@ -51,41 +54,30 @@ export class AuthService {
       );
   }
   signOut() {}
-  register() {}
+  register(newUserData: CreateUserRequestInterface) {
+    return this.httpClient
+      .post<CreateUserRequestInterface>(
+        `${environment.baseUrl}/authentication/registration`,
+        newUserData
+      )
+      .pipe(
+        map(() => {
+          this.router.navigate(['/auth/sign-in']);
+          return;
+        }),
+        catchError((error: HttpErrorResponse) => {
+          this.error.next(error.error as any);
+          console.log(error);
+          return throwError('');
+        })
+      )
+      .subscribe();
+  }
   resetPassword() {}
   refreshToken() {}
 }
 
-export interface AuthRequestInterface {
-  email: string;
-  password: string;
-}
-
-interface AuthResponseInterface {
-  id: number;
-  description?: any;
-  isArchived: boolean;
-  createDateTime: Date;
-  lastChangedDateTime: Date;
-  name?: any;
-  second_name?: any;
-  avatar_url?: any;
-  organization_id: string;
-  password: string;
-  phone?: any;
-  email: string;
-  currentHashedRefreshToken?: any;
-  restorePasswordToken?: any;
-  role: string;
-  organization: {
-    id: number;
-    description?: any;
-    isArchived: boolean;
-    createDateTime: Date;
-    lastChangedDateTime: Date;
-    company_name: string;
-    wallet_id?: any;
-    wallet_secret_id?: any;
-    organization_id: string;
-  };
+export interface ErrorResponseInterface {
+  statusCode: number | null;
+  message: string;
 }

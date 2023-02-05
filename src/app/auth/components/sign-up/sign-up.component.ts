@@ -1,15 +1,21 @@
-import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { passwordShouldMatch } from './validators/password-match.validator';
+import {
+  AuthService,
+  ErrorResponseInterface,
+} from '@auth/services/auth/auth.service';
+import { CreateUserRequestInterface } from '@auth/types/auth.interface';
 
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
   styleUrls: ['./sign-up.component.scss'],
 })
-export class SignUpComponent {
-  constructor(private fb: FormBuilder) {}
-
+export class SignUpComponent implements OnInit {
+  constructor(private fb: FormBuilder, private authService: AuthService) {}
+  errorMessage$: Observable<ErrorResponseInterface>;
   signUpForm = this.fb.group({
     name: ['', [Validators.required, Validators.minLength(3)]],
     second_name: ['', [Validators.required, Validators.minLength(3)]],
@@ -24,7 +30,17 @@ export class SignUpComponent {
     ),
   });
 
+  ngOnInit(): void {
+    this.errorMessage$ = this.authService.errorMessage$;
+  }
+
   onSubmitForm() {
-    console.log(this.signUpForm.value);
+    this.authService.register({
+      name: this.signUpForm.value.name,
+      second_name: this.signUpForm.value.second_name,
+      email: this.signUpForm.value.email,
+      company_name: this.signUpForm.value.company_name,
+      password: this.signUpForm.value.password?.password,
+    } as CreateUserRequestInterface);
   }
 }

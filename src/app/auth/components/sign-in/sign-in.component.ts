@@ -1,9 +1,7 @@
 import { FormBuilder, Validators } from '@angular/forms';
 import { Component } from '@angular/core';
-import {
-  AuthRequestInterface,
-  AuthService,
-} from '@shared/services/auth/auth.service';
+import { AuthService } from '@auth/services/auth/auth.service';
+import { AuthRequestInterface } from '@auth/types/auth.interface';
 
 @Component({
   selector: 'app-sign-in',

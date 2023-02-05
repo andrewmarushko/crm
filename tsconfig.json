@@ -10,7 +10,8 @@
       "@ui/*": ["app/shared/ui/*"],
       "@env/*": ["app/environment/*"],
       "@auth/*": ["app/auth/*"],
-      "@dashboard/*": ["app/dashboard/*"]
+      "@dashboard/*": ["app/dashboard/*"],
+      "@helpers/*": ["app/helpers/*"],
     },
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,

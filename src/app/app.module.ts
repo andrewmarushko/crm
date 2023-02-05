@@ -11,7 +11,7 @@ import { SharedUiModule } from '@shared/modules/shared-ui.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppService } from './app.service';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { TokenInterceptor } from '@shared/services/auth/auth.interceptor';
+import { TokenInterceptor } from '@auth/interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [AppComponent, AuthLayoutComponent, DashboardLayoutComponent],
