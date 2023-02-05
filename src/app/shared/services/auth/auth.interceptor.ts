@@ -8,7 +8,7 @@ import {
 
 import { CookieService } from 'ngx-cookie-service';
 
-import { catchError, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 
 @Injectable()
@@ -23,6 +23,7 @@ export class TokenInterceptor implements HttpInterceptor {
 
     if (accessToken) {
       req = req.clone({
+        withCredentials: true,
         setHeaders: {
           Authorization: `${accessToken}`,
         },

@@ -7,7 +7,6 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedUiModule } from '../shared/shared-ui.module';
-import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [SignInComponent, SignUpComponent, ForgotPasswordComponent],
