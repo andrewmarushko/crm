@@ -8,7 +8,9 @@
       "@layouts/*": ["app/layouts/*"],
       "@theme/*": ["app/shared/theme/*"],
       "@ui/*": ["app/shared/ui/*"],
-      "@env/*": ["app/environment/*"]
+      "@env/*": ["app/environment/*"],
+      "@auth/*": ["app/auth/*"],
+      "@dashboard/*": ["app/dashboard/*"]
     },
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
