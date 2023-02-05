@@ -1,8 +1,9 @@
-import { SignInComponent } from './sign-in/sign-in.component';
-import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
-import { SignUpComponent } from './sign-up/sign-up.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
+import { SignInComponent } from '@auth/components/sign-in/sign-in.component';
+import { ForgotPasswordComponent } from '@auth/components/forgot-password/forgot-password.component';
+import { SignUpComponent } from '@auth/components//sign-up/sign-up.component';
 
 const routes: Routes = [
   {
