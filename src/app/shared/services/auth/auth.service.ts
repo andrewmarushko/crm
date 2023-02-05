@@ -1,5 +1,6 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from '@env/environment';
 import { CookieService } from 'ngx-cookie-service';
 import { throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
@@ -25,7 +26,7 @@ export class AuthService {
   signIn(credentials: AuthRequestInterface) {
     return this.httpClient
       .post<AuthRequestInterface>(
-        'http://localhost:3000/authentication/login',
+        `${environment.baseUrl}/authentication/login`,
         credentials,
         { withCredentials: true }
       )

@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiKey: 'https://app.coinsender.io',
+  baseUrl: 'https://app.coinsender.io/api',
 };
