@@ -1,4 +1,10 @@
 <h1 class="auth-title">Sign in to Coinsender</h1>
+<div *ngIf="errorMessage$ | async as errorMessage">
+  {{ errorMessage.message }}
+</div>
+<div *ngIf="currentUser$ | async as user">
+  {{ user.email }}
+</div>
 <form [formGroup]="signInForm" class="form" (ngSubmit)="onSubmitForm()">
   <div class="form-control">
     <app-text-input
