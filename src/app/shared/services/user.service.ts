@@ -31,31 +31,31 @@ export interface CurrentUserInterface {
   };
 }
 
-const initialState: CurrentUserInterface = {
+export const initialState: CurrentUserInterface = {
   id: 1,
-  description: null,
+  description: '',
   isArchived: false,
   createDateTime: new Date(),
   lastChangedDateTime: new Date(),
-  name: null,
-  second_name: null,
-  avatar_url: null,
+  name: '',
+  second_name: '',
+  avatar_url: '',
   organization_id: '',
   password: '',
-  phone: null,
+  phone: '',
   email: '',
-  currentHashedRefreshToken: null,
-  restorePasswordToken: null,
+  currentHashedRefreshToken: '',
+  restorePasswordToken: '',
   role: '',
   organization: {
     id: 1,
-    description: null,
+    description: '',
     isArchived: false,
     createDateTime: new Date(),
     lastChangedDateTime: new Date(),
     company_name: '',
-    wallet_id: null,
-    wallet_secret_id: null,
+    wallet_id: '',
+    wallet_secret_id: '',
     organization_id: '',
   },
 };

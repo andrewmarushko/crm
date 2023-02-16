@@ -1,4 +1,4 @@
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { passwordShouldMatch } from './validators/password-match.validator';
@@ -15,7 +15,9 @@ import { CreateUserRequestInterface } from '@auth/types/auth.interface';
 })
 export class SignUpComponent implements OnInit {
   constructor(private fb: FormBuilder, private authService: AuthService) {}
-  errorMessage$: Observable<ErrorResponseInterface>;
+
+  errorMessage$: Observable<ErrorResponseInterface | null>;
+
   signUpForm = this.fb.group({
     name: ['', [Validators.required, Validators.minLength(3)]],
     second_name: ['', [Validators.required, Validators.minLength(3)]],
@@ -31,11 +33,13 @@ export class SignUpComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    this.errorMessage$ = this.authService.errorMessage$;
+    this.errorMessage$ = this.authService.errorMessage$.pipe(
+      map((error) => error)
+    );
   }
 
   onSubmitForm() {
-    this.authService.register({
+    this.errorMessage$ = this.authService.register({
       name: this.signUpForm.value.name,
       second_name: this.signUpForm.value.second_name,
       email: this.signUpForm.value.email,

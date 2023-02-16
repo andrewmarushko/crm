@@ -2,31 +2,32 @@ import { Router } from '@angular/router';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '@env/environment';
-import { BehaviorSubject, throwError, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-import { UserService } from '@shared/services/user.service';
-import {
-  AuthResponseInterface,
-  CreateUserRequestInterface,
-} from '@auth/types/auth.interface';
+import { CreateUserRequestInterface } from '@auth/types/auth.interface';
 import { AuthRequestInterface } from '@auth/types/auth.interface';
 import { getCookie } from '@helpers/cookies.helper';
+import {
+  CurrentUserInterface,
+  initialState,
+} from '@shared/services/user.service';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  constructor(
-    private httpClient: HttpClient,
-    private userService: UserService,
-    private router: Router
-  ) {}
+  constructor(private httpClient: HttpClient, private router: Router) {}
 
-  private error = new BehaviorSubject<ErrorResponseInterface>({
-    statusCode: null,
-    message: '',
-  });
-  errorMessage$: Observable<ErrorResponseInterface> = this.error.asObservable();
+  private error = new BehaviorSubject<ErrorResponseInterface | null>(null);
+  private user = new BehaviorSubject<CurrentUserInterface | null | undefined>(
+    initialState
+  );
 
-  signIn(credentials: AuthRequestInterface) {
+  user$: Observable<any> = this.user.asObservable();
+  errorMessage$: Observable<ErrorResponseInterface | null> =
+    this.error.asObservable();
+
+  signIn(
+    credentials: AuthRequestInterface
+  ): Observable<CurrentUserInterface | null | undefined> {
     return this.httpClient
       .post<AuthRequestInterface>(
         `${environment.baseUrl}/authentication/login`,
@@ -37,24 +38,22 @@ export class AuthService {
         map((user: any) => {
           localStorage.setItem('access', getCookie('Authentication'));
           localStorage.setItem('refresh', getCookie('Refresh'));
-
-          return this.userService.setCurrentUser(user as AuthResponseInterface);
+          this.user.next(user);
+          return user;
         }),
         catchError((error: HttpErrorResponse) => {
-          if (error.error instanceof ErrorEvent) {
-            console.error('An error occurred:', error.error.message);
-          } else {
-            console.error(
-              `Backend returned code ${error.status}, ` +
-                `body was: ${error.error}`
-            );
-          }
-          return throwError('Something bad happened; please try again later.');
+          console.log('error', error.error);
+          this.error.next(error.error);
+          return of(null);
         })
       );
   }
+
   signOut() {}
-  register(newUserData: CreateUserRequestInterface) {
+
+  register(
+    newUserData: CreateUserRequestInterface
+  ): Observable<ErrorResponseInterface> {
     return this.httpClient
       .post<CreateUserRequestInterface>(
         `${environment.baseUrl}/authentication/registration`,
@@ -63,17 +62,17 @@ export class AuthService {
       .pipe(
         map(() => {
           this.router.navigate(['/auth/sign-in']);
-          return;
+          return of(null);
         }),
-        catchError((error: HttpErrorResponse) => {
-          this.error.next(error.error as any);
-          console.log(error);
-          return throwError('');
+        catchError((error) => {
+          this.error.next(error.error);
+          return of(error.error);
         })
-      )
-      .subscribe();
+      );
   }
+
   resetPassword() {}
+
   refreshToken() {}
 }
 
