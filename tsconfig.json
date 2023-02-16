@@ -8,10 +8,10 @@
       "@layouts/*": ["app/layouts/*"],
       "@theme/*": ["app/shared/theme/*"],
       "@ui/*": ["app/shared/ui/*"],
-      "@env/*": ["app/environment/*"],
+      "@env/*": ["environments/*"],
       "@auth/*": ["app/auth/*"],
       "@dashboard/*": ["app/dashboard/*"],
-      "@helpers/*": ["app/helpers/*"],
+      "@helpers/*": ["app/helpers/*"]
     },
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
