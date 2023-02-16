@@ -1,8 +1,7 @@
 import { FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '@auth/services/auth/auth.service';
-import { AuthRequestInterface } from '@auth/types/auth.interface';
-import { map, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { CurrentUserInterface } from '@shared/services/user.service';
 
 @Component({
@@ -21,17 +20,7 @@ export class SignInComponent implements OnInit {
     password: ['', [Validators.required, Validators.minLength(3)]],
   });
 
-  onSubmitForm() {
-    this.currentUser$ = this.authService.signIn(
-      this.signInForm.value as AuthRequestInterface
-    );
-  }
+  onSubmitForm() {}
 
-  ngOnInit(): void {
-    this.errorMessage$ = this.authService.errorMessage$.pipe(
-      map((error) => error)
-    );
-
-    this.currentUser$ = this.authService.user$;
-  }
+  ngOnInit(): void {}
 }

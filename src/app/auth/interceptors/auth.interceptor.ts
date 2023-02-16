@@ -6,8 +6,6 @@ import {
   HttpRequest,
 } from '@angular/common/http';
 
-import { CookieService } from 'ngx-cookie-service';
-
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 
@@ -30,15 +28,6 @@ export class TokenInterceptor implements HttpInterceptor {
       });
     }
 
-    return next
-      .handle(req)
-      .pipe
-      // catchError((error) => {
-      //   if (error.status === 401) {
-      //     const refresh = localStorage.getItem('refresh');
-
-      //   }
-      // })
-      ();
+    return next.handle(req).pipe();
   }
 }

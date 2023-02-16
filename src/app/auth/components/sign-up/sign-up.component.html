@@ -1,7 +1,4 @@
 <h1 class="auth-title">Sign up to Coinsender</h1>
-<div *ngIf="errorMessage$ | async as errorMessage">
-  {{ errorMessage | json }}
-</div>
 <form [formGroup]="signUpForm" class="form" (ngSubmit)="onSubmitForm()">
   <div class="form-group">
     <app-text-input
