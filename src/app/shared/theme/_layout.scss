@@ -3,3 +3,9 @@
 .container {
   @include container;
 }
+
+.form {
+  @include typography($base-font-size);
+  display: flex;
+  flex-direction: column;
+}

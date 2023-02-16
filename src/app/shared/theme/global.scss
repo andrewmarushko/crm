@@ -9,7 +9,6 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  @include typography($base-font-size);
 }
 
 input {
@@ -17,8 +16,7 @@ input {
   outline: none;
 }
 
-.form {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
+body {
+  height: 100%;
+  @include typography($base-font-size);
 }

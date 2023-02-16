@@ -1,0 +1,8 @@
+<nav>
+  <a
+    *ngFor="let route of routes"
+    [routerLink]="route.path"
+    routerLinkActive="active"
+    >{{ route.title }}</a
+  >
+</nav>

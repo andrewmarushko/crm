@@ -5,45 +5,55 @@
   box-shadow: $shadow $shadow-color;
 }
 
-@mixin media-screen($breakpoint) {
-  $breakpoints: (
-    xs: (
-      max-width: $xs-max,
-    ),
-    sm: (
-      min-width: $sm-min,
-    )
-    and
-    (
-      max-width: $sm-max,
-    ),
-    md: (
-      min-width: $md-min,
-    )
-    and
-    (
-      max-width: $md-max,
-    ),
-    lg: (
-      min-width: $lg-min,
-    )
-    and
-    (
-      max-width: $lg-max,
-    ),
-    xl: (
-      min-width: $xl-min,
-    ),
-  );
+// @mixin media-screen($breakpoint) {
+//   $breakpoints: (
+//     xs: (
+//       max-width: $xs-max,
+//     ),
+//     sm: (
+//       min-width: $sm-min,
+//       max-width: $sm-max,
+//     ),
+//     md: (
+//       min-width: $md-min,
+//       max-width: $md-max,
+//     ),
+//     lg: (
+//       min-width: $lg-min,
+//       max-width: $lg-max,
+//     ),
+//     xl: (
+//       min-width: $xl-min,
+//     ),
+//   );
 
-  @each $point, $query in $breakpoints {
-    @if $breakpoint == $point {
-      @media #{$query} {
-        @content;
-      }
-    }
-  }
-}
+//   @each $point, $query in $breakpoints {
+//     @if $breakpoint == $point {
+//       @media #{$query} {
+//         @content;
+//       }
+//     }
+//   }
+// }
+
+// @mixin media-screen($breakpoint) {
+//   // $breakpoint is simply a variable that can have several values
+
+//   @if $breakpoint==tablet {
+//     // here `laptop` is the value of $breakpoint
+//     // when call laptop, we mean the following piece of code
+
+//     @media only screen and (max-width: 600px) {
+//       @content;
+//     }
+//   }
+
+//   @if $breakpoint==mobile {
+//     @media only screen and (max-width: 480px) {
+//       @content;
+//     }
+//   }
+// }
 
 @mixin typography(
   $font-size,
@@ -65,10 +75,13 @@
   }
 }
 
-@mixin spacing($size) {
+@mixin spacing($vertical, $horizontal) {
   $font-size: 16px;
-  margin: ($size + 4) * ($font-size / 16);
-  padding: ($size + 4) * ($font-size / 16);
+
+  margin: ($vertical + 4) * ($font-size / 16) ($horizontal + 4) *
+    ($font-size / 16);
+  padding: ($vertical + 4) * ($font-size / 16) ($horizontal + 4) *
+    ($font-size / 16);
 }
 
 @mixin container(
