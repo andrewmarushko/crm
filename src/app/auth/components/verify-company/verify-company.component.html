@@ -1,1 +1,15 @@
-<h1>Verify company page</h1>
+<h1 class="auth-title">Verify Company</h1>
+<form class="form" [formGroup]="verifyCompanyForm" (ngSubmit)="onSubmitForm()">
+  <div class="form-control">
+    <app-text-input
+      id="company_name"
+      label="Company name"
+      type="text"
+      placeholder="Type your company name"
+      [control]="verifyCompanyForm.controls.company_name"
+    ></app-text-input>
+  </div>
+  <div class="form-control">
+    <button class="btn" type="submit">Verify</button>
+  </div>
+</form>

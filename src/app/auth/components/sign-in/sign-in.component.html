@@ -9,14 +9,14 @@
       label="Email"
       type="email"
       placeholder="Enter your email"
-      [control]="signInForm.controls.email"
+      [control]="signInForm.controls.corporate_email"
     ></app-text-input>
 
     <div
       class="input-error"
       *ngIf="
-        signInForm.controls.email.dirty &&
-        signInForm.controls.email.hasError('required')
+        signInForm.controls.corporate_email.dirty &&
+        signInForm.controls.corporate_email.hasError('required')
       "
     >
       This field is required
@@ -24,13 +24,13 @@
     <div
       class="input-error"
       *ngIf="
-        signInForm.controls.email.dirty &&
-        signInForm.controls.email.hasError('minlength')
+        signInForm.controls.corporate_email.dirty &&
+        signInForm.controls.corporate_email.hasError('minlength')
       "
     >
       Field should be more than
       <strong>{{
-        signInForm.controls.email.getError("minlength").requiredLength
+        signInForm.controls.corporate_email.getError("minlength").requiredLength
       }}</strong>
       characters
     </div>
