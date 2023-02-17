@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import {
+  HttpErrorResponse,
   HttpEvent,
   HttpHandler,
+  HttpHeaders,
   HttpInterceptor,
   HttpRequest,
 } from '@angular/common/http';
 
-import { Observable } from 'rxjs';
+import { catchError, Observable, throwError } from 'rxjs';
 import { Router } from '@angular/router';
 
 @Injectable()
@@ -17,17 +19,27 @@ export class TokenInterceptor implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    const accessToken = localStorage.getItem('access');
+    const accessToken = localStorage.getItem('accessToken');
+    const refreshToken = localStorage.getItem('refreshToken');
+    const companyId = localStorage.getItem('company_id');
 
-    if (accessToken) {
+    console.log('>>>>>>>>>', companyId);
+    if (companyId) {
       req = req.clone({
-        withCredentials: true,
         setHeaders: {
-          Authorization: `${accessToken}`,
+          Authorization: `Berer ${accessToken}`,
+          company_id: companyId,
         },
       });
     }
 
-    return next.handle(req).pipe();
+    return next.handle(req).pipe(
+      catchError((error: HttpErrorResponse) => {
+        if (error.status === 401) {
+          console.log('HERE REFRESH TOKEN FLOW...');
+        }
+        return throwError(() => error);
+      })
+    );
   }
 }

@@ -4,5 +4,10 @@ import { Injectable } from '@angular/core';
 export class ConfigService {
   constructor() {}
 
-  getUsers() {}
+  getUsers(): any {
+    const user = localStorage.getItem('user');
+    if (user) {
+      return JSON.parse(user);
+    }
+  }
 }
