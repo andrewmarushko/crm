@@ -1,7 +1,11 @@
 <h1 class="form-title">Sign in to CRM</h1>
-<div *ngIf="errorMessage$ | async">
-  {{ error }}
+<div class="alert-container">
+  <app-alert-message
+    *ngIf="errorMessage$ | async"
+    [message]="error"
+  ></app-alert-message>
 </div>
+
 <form [formGroup]="signInForm" class="form" (ngSubmit)="onSubmitForm()">
   <div class="input-container">
     <app-text-input
@@ -27,10 +31,9 @@
       [disabled]="signInForm.invalid"
       [label]="'Sign In'"
     ></app-button>
-  </div>
-
-  <div>
-    <span>Already have an account?</span>
-    <a routerLink="/auth/sign-up"> Sign Up</a>
+    <div class="redirect-wrapper">
+      <span>Already have an account?</span>
+      <a routerLink="/auth/sign-up" class="link"> Sign Up</a>
+    </div>
   </div>
 </form>

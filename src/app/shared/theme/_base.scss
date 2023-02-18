@@ -13,6 +13,8 @@ main.dark {
   --primary-font-size: 16px;
   --error-color: #ff403b;
   --paper-background: rgb(29 28 49);
+  --error-color-text: #5f2120;
+  --alert-error-bg: #fdeded;
 }
 
 main.light {
@@ -26,4 +28,6 @@ main.light {
   --primary-font-size: 16px;
   --error-color: #ff403b;
   --paper-background: #ffffff;
+  --error-color-text: #5f2120;
+  --alert-error-bg: #fdeded;
 }

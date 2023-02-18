@@ -3,3 +3,19 @@
   flex-direction: column;
   gap: 24px;
 }
+
+.alert-container {
+  margin: 5px 0;
+}
+
+.redirect-wrapper {
+  display: flex;
+  justify-content: center;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.link {
+  margin-left: 5px;
+  color: var(--cta-primary);
+}
