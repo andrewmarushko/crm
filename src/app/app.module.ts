@@ -1,5 +1,5 @@
 import { DashboardRoutingModule } from './dashboard/modules/dashboard-routing.module';
-import { NgModule } from '@angular/core';
+import { ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -12,6 +12,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppService } from './app.service';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from '@auth/interceptors/auth.interceptor';
+import { GlobalErrorHandlerService } from '@shared/services/error-handling.service';
 
 @NgModule({
   declarations: [AppComponent, AuthLayoutComponent, DashboardLayoutComponent],
@@ -31,6 +32,10 @@ import { TokenInterceptor } from '@auth/interceptors/auth.interceptor';
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
       multi: true,
+    },
+    {
+      provide: ErrorHandler,
+      useClass: GlobalErrorHandlerService,
     },
   ],
   bootstrap: [AppComponent],

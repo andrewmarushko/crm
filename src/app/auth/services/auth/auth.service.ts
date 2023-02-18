@@ -1,9 +1,9 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, tap } from 'rxjs/operators';
 import { environment } from '@env/environment';
 import { throwError } from 'rxjs';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -22,12 +22,11 @@ export class AuthService {
             this.router.navigate(['/auth/sign-in']);
           }
         }),
-        catchError(() => {
+        catchError((err) => {
           localStorage.setItem('company_id', 'null');
-          return throwError(() => new Error('company id not found'));
+          return throwError(() => err.error.message);
         })
-      )
-      .subscribe();
+      );
   }
 
   signIn(formData: LoginRequest) {
@@ -35,10 +34,9 @@ export class AuthService {
       .post<LoginRequest>(`${environment.baseUrl}/auth/login`, formData)
       .pipe(
         tap((res: any) => {
-          console.log(res);
+          const user = res.user;
           const accessToken = res.accessToken;
           const refreshToken = res.refreshToken;
-          const user = res.user;
 
           if (accessToken && refreshToken) {
             localStorage.setItem('refreshToken', refreshToken);
@@ -47,12 +45,11 @@ export class AuthService {
             this.router.navigate(['/invoice']);
           }
         }),
-        catchError((error: HttpErrorResponse) => {
-          console.log(error);
-          return throwError(() => error);
+        catchError((err) => {
+          console.info('error from auth service', err);
+          return throwError(() => err.error.message);
         })
-      )
-      .subscribe();
+      );
   }
 
   signOut() {}
@@ -78,3 +75,5 @@ interface VerifyCompanyResponse {
   status: boolean;
   company_name: string;
 }
+
+// TODO add missing and move interfaces
