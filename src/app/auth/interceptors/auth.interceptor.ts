@@ -3,17 +3,20 @@ import {
   HttpErrorResponse,
   HttpEvent,
   HttpHandler,
-  HttpHeaders,
   HttpInterceptor,
   HttpRequest,
 } from '@angular/common/http';
 
-import { catchError, Observable, throwError } from 'rxjs';
+import { catchError, from, Observable, switchMap, throwError } from 'rxjs';
 import { Router } from '@angular/router';
+import { AuthService } from '@auth/services/auth/auth.service';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
-  constructor(private router: Router) {}
+  private refreshTokenAttempts = 0;
+  private readonly MAX_REFRESH_TOKEN_ATTEMPTS = 3;
+
+  constructor(private authService: AuthService, private router: Router) {}
 
   intercept(
     req: HttpRequest<any>,
@@ -26,7 +29,7 @@ export class TokenInterceptor implements HttpInterceptor {
     if (companyId) {
       req = req.clone({
         setHeaders: {
-          Authorization: `Berer ${accessToken}`,
+          Authorization: `Bearer ${accessToken}`,
           company_id: companyId,
         },
       });
@@ -35,13 +38,47 @@ export class TokenInterceptor implements HttpInterceptor {
     return next.handle(req).pipe(
       catchError((error: HttpErrorResponse) => {
         if (error.status === 401) {
-          console.log('HERE REFRESH TOKEN FLOW...');
+          if (this.refreshTokenAttempts < this.MAX_REFRESH_TOKEN_ATTEMPTS) {
+            this.refreshTokenAttempts++;
+
+            return this.authService.refreshToken(refreshToken!).pipe(
+              switchMap((data: any) => {
+                console.log('companyID', companyId);
+                this.refreshTokenAttempts = 0;
+
+                localStorage.setItem('accessToken', data.accessToken);
+                localStorage.setItem('refreshToken', data.refreshToken);
+
+                req = req.clone({
+                  setHeaders: {
+                    Authorization: `Bearer ${data.accessToken}`,
+                    company_id: companyId!,
+                  },
+                });
+
+                return next.handle(req);
+              }),
+              catchError((error: HttpErrorResponse) =>
+                this.handleRefreshTokenError(error)
+              )
+            );
+          } else {
+            return this.handleRefreshTokenError(error);
+          }
+        } else {
+          return throwError(error);
         }
-        return throwError(() => {
-          console.info('Error from interceprot', error);
-          return error;
-        });
       })
+    );
+  }
+
+  private handleRefreshTokenError(
+    error: HttpErrorResponse
+  ): Observable<HttpEvent<any>> {
+    this.refreshTokenAttempts = 0;
+
+    return from(this.router.navigate(['/auth/verify-company'])).pipe(
+      switchMap(() => throwError(error))
     );
   }
 }

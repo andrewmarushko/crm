@@ -5,6 +5,7 @@ import { SignInComponent } from '@auth/components/sign-in/sign-in.component';
 import { ForgotPasswordComponent } from '@auth/components/forgot-password/forgot-password.component';
 import { SignUpComponent } from '@auth/components//sign-up/sign-up.component';
 import { VerifyCompanyComponent } from '@auth/components/verify-company/verify-company.component';
+import { AuthGuard } from '@auth/guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -23,10 +24,12 @@ const routes: Routes = [
   {
     path: 'sign-up',
     component: SignUpComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'forgot-password',
     component: ForgotPasswordComponent,
+    canActivate: [AuthGuard],
   },
 ];
 
