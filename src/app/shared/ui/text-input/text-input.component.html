@@ -7,4 +7,18 @@
     [id]="id"
     [formControl]="control"
   />
+  <div
+    class="input-error"
+    *ngIf="controlName.dirty && controlName.hasError('required')"
+  >
+    This field is required
+  </div>
+  <div
+    class="input-error"
+    *ngIf="controlName.dirty && controlName.hasError('minlength')"
+  >
+    Field should be more than
+    <strong>{{ controlName.getError("minlength").requiredLength }}</strong>
+    characters
+  </div>
 </div>

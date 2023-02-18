@@ -12,4 +12,5 @@ export class TextFieldComponent {
   @Input() label: string;
   @Input() type: string;
   @Input() id: string;
+  @Input() controlName: FormControl;
 }
