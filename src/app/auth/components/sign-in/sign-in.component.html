@@ -21,10 +21,14 @@
       [control]="signInForm.controls.password"
       [controlName]="signInForm.controls.password"
     ></app-text-input>
-  </div>
-  <!-- <button class="btn" [disabled]="signInForm.invalid">Sign Up</button> -->
 
-  <button class="btn">Sign In</button>
+    <app-button
+      [full]="true"
+      [disabled]="signInForm.invalid"
+      [label]="'Sign In'"
+    ></app-button>
+  </div>
+
   <div>
     <span>Already have an account?</span>
     <a routerLink="/auth/sign-up"> Sign Up</a>

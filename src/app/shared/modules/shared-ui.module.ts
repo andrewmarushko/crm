@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { AuthGuard } from '@auth/guards/auth.guard';
 import { AuthService } from '@auth/services/auth/auth.service';
+import { ButtonComponent } from '@shared/ui/button/button.component';
 import { LogoComponent } from '@shared/ui/logo/logo.component';
 import { UserService } from '../services/user.service';
 import { HeaderComponent } from '../ui/header/header.component';
@@ -19,6 +20,7 @@ import { TextFieldComponent } from '../ui/text-input/text-input.component';
     SidebarComponent,
     NavigationComponent,
     LogoComponent,
+    ButtonComponent,
   ],
   declarations: [
     TextFieldComponent,
@@ -26,6 +28,7 @@ import { TextFieldComponent } from '../ui/text-input/text-input.component';
     SidebarComponent,
     NavigationComponent,
     LogoComponent,
+    ButtonComponent,
   ],
   providers: [AuthService, UserService, AuthGuard],
 })
