@@ -52,6 +52,15 @@ export class AuthService {
       );
   }
 
+  checkAuthUser() {
+    const accessToken = localStorage.getItem('accessToken');
+    const companyId = localStorage.getItem('company_id');
+
+    if (accessToken && companyId) {
+      this.router.navigate(['/invoice']);
+    }
+  }
+
   signOut() {}
 
   signUp() {}
