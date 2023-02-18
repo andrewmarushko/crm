@@ -1,93 +1,28 @@
 <h1 class="auth-title">Sign up to CRM</h1>
 <form [formGroup]="signUpForm" class="form" (ngSubmit)="onSubmitForm()">
-  <div class="form-group">
-    <app-text-input
-      id="name"
-      label="Name"
-      placeholder="Type your name"
-      [control]="signUpForm.controls.name"
-    ></app-text-input>
-    <div
-      class="input-error"
-      *ngIf="
-        signUpForm.controls.name.dirty &&
-        signUpForm.controls.name.hasError('required')
-      "
-    >
-      This field is required
-    </div>
-    <div
-      class="input-error"
-      *ngIf="
-        signUpForm.controls.name.dirty &&
-        signUpForm.controls.name.hasError('minlength')
-      "
-    >
-      Field should be more than
-      <strong>{{
-        signUpForm.controls.name.getError("minlength").requiredLength
-      }}</strong>
-      characters
-    </div>
+  <app-text-input
+    id="name"
+    label="Name"
+    placeholder="Type your name"
+    [control]="signUpForm.controls.name"
+    [controlName]="signUpForm.controls.name"
+  ></app-text-input>
 
-    <app-text-input
-      id="surname"
-      label="Surname"
-      placeholder="Type your surname"
-      [control]="signUpForm.controls.second_name"
-    ></app-text-input>
-    <div
-      class="input-error"
-      *ngIf="
-        signUpForm.controls.second_name.dirty &&
-        signUpForm.controls.second_name.hasError('required')
-      "
-    >
-      This field is required
-    </div>
-    <div
-      class="input-error"
-      *ngIf="
-        signUpForm.controls.second_name.dirty &&
-        signUpForm.controls.second_name.hasError('minlength')
-      "
-    >
-      Field should be more than
-      <strong>{{
-        signUpForm.controls.second_name.getError("minlength").requiredLength
-      }}</strong>
-      characters
-    </div>
-  </div>
+  <app-text-input
+    id="surname"
+    label="Surname"
+    placeholder="Type your surname"
+    [control]="signUpForm.controls.second_name"
+    [controlName]="signUpForm.controls.second_name"
+  ></app-text-input>
 
   <app-text-input
     id="company"
     label="Company"
     placeholder="Company name"
     [control]="signUpForm.controls.company_name"
+    [controlName]="signUpForm.controls.company_name"
   ></app-text-input>
-  <div
-    class="input-error"
-    *ngIf="
-      signUpForm.controls.company_name.dirty &&
-      signUpForm.controls.company_name.hasError('required')
-    "
-  >
-    This field is required
-  </div>
-  <div
-    class="input-error"
-    *ngIf="
-      signUpForm.controls.company_name.dirty &&
-      signUpForm.controls.company_name.hasError('minlength')
-    "
-  >
-    Field should be more than
-    <strong>{{
-      signUpForm.controls.company_name.getError("minlength").requiredLength
-    }}</strong>
-    characters
-  </div>
 
   <app-text-input
     id="email"
@@ -95,94 +30,37 @@
     type="email"
     placeholder="Enter your email"
     [control]="signUpForm.controls.email"
+    [controlName]="signUpForm.controls.email"
   ></app-text-input>
 
-  <div
-    class="input-error"
-    *ngIf="
-      signUpForm.controls.email.dirty &&
-      signUpForm.controls.email.hasError('required')
-    "
-  >
-    This field is required
-  </div>
-  <div
-    class="input-error"
-    *ngIf="
-      signUpForm.controls.email.dirty &&
-      signUpForm.controls.email.hasError('minlength')
-    "
-  >
-    Field should be more than
-    <strong>{{
-      signUpForm.controls.email.getError("minlength").requiredLength
-    }}</strong>
-    characters
-  </div>
-
   <div formGroupName="password">
-    <div class="form-group">
-      <app-text-input
-        id="email"
-        label="Password"
-        type="password"
-        placeholder="Enter your password"
-        [control]="signUpForm.controls.password.controls.password"
-      ></app-text-input>
-      <div
-        class="input-error"
-        *ngIf="
-          signUpForm.controls.password.controls.password.dirty &&
-          signUpForm.controls.password.controls.password.hasError('required')
-        "
-      >
-        This field is required
-      </div>
-      <div
-        class="input-error"
-        *ngIf="
-          signUpForm.controls.password.controls.password.dirty &&
-          signUpForm.controls.password.controls.password.hasError('minlength')
-        "
-      >
-        Field should be more than
-        <strong>{{
-          signUpForm.controls.password.controls.password.getError("minlength")
-            .requiredLength
-        }}</strong>
-        characters
-      </div>
+    <app-text-input
+      id="email"
+      label="Password"
+      type="password"
+      placeholder="Enter your password"
+      [control]="signUpForm.controls.password.controls.password"
+      [controlName]="signUpForm.controls.password.controls.password"
+    ></app-text-input>
 
-      <app-text-input
-        id="email"
-        type="password"
-        label="Confirm Password"
-        placeholder="Confirm Password"
-        [control]="signUpForm.controls.password.controls.confirm_password"
-      ></app-text-input>
-
-      <ng-container
-        *ngIf="
-          signUpForm.controls.password.controls
-            .confirm_password as confirmPassword
-        "
-      >
-        <div
-          class="input-error"
-          *ngIf="
-            confirmPassword.hasError('passwordShouldMatch') &&
-            confirmPassword.dirty
-          "
-        >
-          Password don't match
-        </div>
-      </ng-container>
-    </div>
+    <app-text-input
+      id="email"
+      type="password"
+      label="Confirm Password"
+      placeholder="Confirm Password"
+      [control]="signUpForm.controls.password.controls.confirm_password"
+      [controlName]="signUpForm.controls.password.controls.confirm_password"
+    ></app-text-input>
   </div>
 
-  <button [disabled]="signUpForm.invalid">Sign Up</button>
-  <div>
+  <app-button
+    [full]="true"
+    [disabled]="signUpForm.invalid"
+    [label]="'Sign Up'"
+  ></app-button>
+
+  <div class="redirect-wrapper">
     <span>Already have an account?</span>
-    <a routerLink="/auth/sign-in"> Sign In</a>
+    <a routerLink="/auth/sign-in" class="link"> Sign In</a>
   </div>
 </form>
