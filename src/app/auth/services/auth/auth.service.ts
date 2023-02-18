@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, tap } from 'rxjs/operators';
+import { catchError, retry, tap } from 'rxjs/operators';
 import { environment } from '@env/environment';
 import { throwError } from 'rxjs';
 import { Router } from '@angular/router';
@@ -58,7 +58,21 @@ export class AuthService {
 
   resetPassword() {}
 
-  refreshToken() {}
+  refreshToken(refreshAccessToken: string) {
+    const companyId = localStorage.getItem('company_id');
+    console.log(companyId);
+    return this.http.post<any>(
+      `${environment.baseUrl}/auth/refresh`,
+      {
+        refreshAccessToken,
+      },
+      {
+        headers: {
+          company_id: companyId!,
+        },
+      }
+    );
+  }
 }
 
 export interface LoginRequest {

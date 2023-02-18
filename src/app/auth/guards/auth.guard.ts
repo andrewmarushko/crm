@@ -20,12 +20,15 @@ export class AuthGuard implements CanActivate {
     | UrlTree
     | Observable<boolean | UrlTree>
     | Promise<boolean | UrlTree> {
-    const accessToken = localStorage.getItem('access');
+    const accessToken = localStorage.getItem('accessToken');
+    const companyId = localStorage.getItem('company_id');
 
-    if (accessToken) {
+    console.log({ accessToken, companyId });
+
+    if (accessToken && companyId) {
       return true;
     } else {
-      return this.router.createUrlTree(['/auth/sign-in']);
+      return this.router.createUrlTree(['/auth/verify-company']);
     }
   }
 }
