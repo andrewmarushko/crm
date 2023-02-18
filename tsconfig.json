@@ -11,7 +11,8 @@
       "@env/*": ["environments/*"],
       "@auth/*": ["app/auth/*"],
       "@dashboard/*": ["app/dashboard/*"],
-      "@helpers/*": ["app/helpers/*"]
+      "@helpers/*": ["app/helpers/*"],
+      "@assets/*": ["src/assets/*"]
     },
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,

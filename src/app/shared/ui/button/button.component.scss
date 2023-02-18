@@ -1,0 +1,24 @@
+.button {
+  outline: none;
+  border: none;
+  background: var(--cta-primary);
+  padding: 11px 19px;
+  cursor: pointer;
+  border-radius: 4px;
+  color: var(--cta-text-color);
+  font-weight: 600;
+  font-size: 13px;
+
+  &:disabled {
+    pointer-events: none;
+    cursor: not-allowed;
+    background: var(--cta-disabled-bg);
+  }
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.full {
+  width: 100%;
+}

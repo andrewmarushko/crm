@@ -7,6 +7,7 @@ $h4-size: 1.563rem;
 $h5-size: 1.25rem;
 
 $base-size: 1rem;
+$form-title: 1.75em;
 
 $span-size: 1rem;
 $button-size: 0.725rem;
@@ -40,4 +41,10 @@ h4 {
 
 h5 {
   @include typography($h5-size);
+}
+
+.form-title {
+  font-weight: 600;
+  font-size: $form-title;
+  text-align: center;
 }

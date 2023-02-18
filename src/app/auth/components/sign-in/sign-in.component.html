@@ -1,77 +1,39 @@
-<h1 class="auth-title">Sign in to Coinsender</h1>
-<div *ngIf="errorMessage$ | async">
-  {{ error }}
+<h1 class="form-title">Sign in to CRM</h1>
+<div class="alert-container">
+  <app-alert-message
+    *ngIf="errorMessage$ | async"
+    [message]="error"
+  ></app-alert-message>
 </div>
+
 <form [formGroup]="signInForm" class="form" (ngSubmit)="onSubmitForm()">
-  <div class="form-control">
+  <div class="input-container">
     <app-text-input
       id="email"
       label="Email"
       type="email"
       placeholder="Enter your email"
       [control]="signInForm.controls.corporate_email"
+      [controlName]="signInForm.controls.corporate_email"
     ></app-text-input>
 
-    <div
-      class="input-error"
-      *ngIf="
-        signInForm.controls.corporate_email.dirty &&
-        signInForm.controls.corporate_email.hasError('required')
-      "
-    >
-      This field is required
-    </div>
-    <div
-      class="input-error"
-      *ngIf="
-        signInForm.controls.corporate_email.dirty &&
-        signInForm.controls.corporate_email.hasError('minlength')
-      "
-    >
-      Field should be more than
-      <strong>{{
-        signInForm.controls.corporate_email.getError("minlength").requiredLength
-      }}</strong>
-      characters
-    </div>
-  </div>
-  <div class="form-control">
     <app-text-input
       id="email"
       label="Password"
       type="password"
       placeholder="Enter your password"
       [control]="signInForm.controls.password"
+      [controlName]="signInForm.controls.password"
     ></app-text-input>
-    <div
-      class="input-error"
-      *ngIf="
-        signInForm.controls.password.dirty &&
-        signInForm.controls.password.hasError('required')
-      "
-    >
-      This field is required
-    </div>
-    <div
-      class="input-error"
-      *ngIf="
-        signInForm.controls.password &&
-        signInForm.controls.password.hasError('minlength')
-      "
-    >
-      Field should be more than
-      <strong>{{
-        signInForm.controls.password.getError("minlength").requiredLength
-      }}</strong>
-      characters
-    </div>
-  </div>
 
-  <!-- <button class="btn" [disabled]="signInForm.invalid">Sign Up</button> -->
-
-  <button class="btn">Sign In</button>
-  <div>
-    <span>Already have an account?</span>
-    <a routerLink="/auth/sign-up"> Sign Up</a>
+    <app-button
+      [full]="true"
+      [disabled]="signInForm.invalid"
+      [label]="'Sign In'"
+    ></app-button>
+    <div class="redirect-wrapper">
+      <span>Already have an account?</span>
+      <a routerLink="/auth/sign-up" class="link"> Sign Up</a>
+    </div>
   </div>
 </form>
