@@ -1,7 +1,7 @@
 import { FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { AuthService, LoginRequest } from '@auth/services/auth/auth.service';
-import { Observable } from 'rxjs';
+import { catchError, Observable, of, tap } from 'rxjs';
 import { CurrentUserInterface } from '@shared/services/user.service';
 
 @Component({
@@ -12,8 +12,9 @@ import { CurrentUserInterface } from '@shared/services/user.service';
 export class SignInComponent implements OnInit {
   constructor(private fb: FormBuilder, private authService: AuthService) {}
 
-  errorMessage$: Observable<any>;
-  currentUser$: Observable<CurrentUserInterface | null | undefined>;
+  error: Error | null = null;
+  currentUser$: Observable<CurrentUserInterface>;
+  errorMessage$: Observable<Error>;
 
   signInForm = this.fb.group({
     corporate_email: ['', [Validators.required, Validators.email]],
@@ -21,7 +22,17 @@ export class SignInComponent implements OnInit {
   });
 
   onSubmitForm() {
-    this.authService.signIn(this.signInForm.value as LoginRequest);
+    this.currentUser$ = this.authService.signIn(
+      this.signInForm.value as LoginRequest
+    );
+
+    this.errorMessage$ = this.currentUser$.pipe(
+      tap({
+        error: (err) => (this.error = err),
+        complete: () => (this.error = null),
+      }),
+      catchError((error) => of(error))
+    );
   }
 
   ngOnInit(): void {}

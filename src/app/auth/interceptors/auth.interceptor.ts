@@ -23,7 +23,6 @@ export class TokenInterceptor implements HttpInterceptor {
     const refreshToken = localStorage.getItem('refreshToken');
     const companyId = localStorage.getItem('company_id');
 
-    console.log('>>>>>>>>>', companyId);
     if (companyId) {
       req = req.clone({
         setHeaders: {
@@ -38,7 +37,10 @@ export class TokenInterceptor implements HttpInterceptor {
         if (error.status === 401) {
           console.log('HERE REFRESH TOKEN FLOW...');
         }
-        return throwError(() => error);
+        return throwError(() => {
+          console.info('Error from interceprot', error);
+          return error;
+        });
       })
     );
   }
