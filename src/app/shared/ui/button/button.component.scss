@@ -8,12 +8,15 @@
   color: var(--cta-text-color);
   font-weight: 600;
   font-size: 13px;
-}
 
-button:disabled {
-  pointer-events: none;
-  cursor: not-allowed;
-  background: var(--cta-disabled-bg);
+  &:disabled {
+    pointer-events: none;
+    cursor: not-allowed;
+    background: var(--cta-disabled-bg);
+  }
+  &:hover {
+    opacity: 0.8;
+  }
 }
 
 .full {

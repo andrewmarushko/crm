@@ -1,8 +1,6 @@
 <ng-container *ngIf="full; else primary">
-  <button disabled="disabled" class="button full">{{ label }}</button>
+  <button [disabled]="disabled" class="button full">{{ label }}</button>
 </ng-container>
 <ng-template #primary>
-  <button disabled="disabled" class="button primary">{{ label }}</button>
+  <button [disabled]="disabled" class="button primary">{{ label }}</button>
 </ng-template>
-
-{{ disabled }}
