@@ -7,6 +7,11 @@ import { EmployeesComponent } from '@dashboard/components/employees/employee.com
 import { CandidatesComponent } from '@dashboard/components/candidates/candidates.component';
 import { WarehousComponent } from '@dashboard/components/warehous/warehous.component';
 import { CalendarComponent } from '@dashboard/components/calendar/calendar.component';
+import { CalendarService } from '@dashboard/services/calendar.service';
+import { CandidatesService } from '@dashboard/services/candidates.service';
+import { EmployeesService } from '@dashboard/services/employees.service';
+import { WarehousService } from '@dashboard/services/warehous.service';
+import { DashboardService } from '@dashboard/services/dashboard.service';
 
 @NgModule({
   declarations: [
@@ -17,5 +22,12 @@ import { CalendarComponent } from '@dashboard/components/calendar/calendar.compo
     CalendarComponent,
   ],
   imports: [CommonModule, DashboardRoutingModule],
+  providers: [
+    CalendarService,
+    EmployeesService,
+    WarehousService,
+    DashboardService,
+    CandidatesService,
+  ],
 })
 export class DashboardModule {}
