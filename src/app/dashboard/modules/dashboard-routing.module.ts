@@ -2,32 +2,48 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { DashboardComponent } from '@dashboard/components/dashboard/dashboard.component';
-import { ClientsComponent } from '@dashboard/components/clients/clients.component';
 import { AuthGuard } from '@auth/guards/auth.guard';
+import { EmployeesComponent } from '@dashboard/components/employees/employees.component';
+import { CandidatesComponent } from '@dashboard/components/candidates/candidates.component';
+import { CalendarComponent } from '@dashboard/components/calendar/calendar.component';
+import { WarehousComponent } from '@dashboard/components/warehous/warehous.component';
 
 export const dashboardRoutes: Routes = [
   {
-    path: 'invoice',
-    title: 'Invoices',
+    path: '',
+    redirectTo: 'dashboard',
+    pathMatch: 'full',
+  },
+
+  {
+    path: 'dashboard',
+    title: 'Dashboard',
     component: DashboardComponent,
     canActivate: [AuthGuard],
   },
   {
-    path: 'clients',
-    title: 'Clients',
-    component: ClientsComponent,
+    path: 'employees',
+    title: 'Employees',
+    component: EmployeesComponent,
     canActivate: [AuthGuard],
   },
   {
-    path: 'invoice2',
-    title: 'Invoices',
-    component: DashboardComponent,
+    path: 'candidates',
+    title: 'Candidates',
+    component: CandidatesComponent,
     canActivate: [AuthGuard],
   },
   {
-    path: 'clients3',
-    title: 'Clients',
-    component: ClientsComponent,
+    path: 'calendar',
+    title: 'Calendar',
+    component: CalendarComponent,
+    canActivate: [AuthGuard],
+  },
+
+  {
+    path: 'warehous',
+    title: 'Warehous',
+    component: WarehousComponent,
     canActivate: [AuthGuard],
   },
 ];

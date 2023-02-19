@@ -6,7 +6,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthLayoutComponent } from '@layouts/auth-layout/components/auth-layout.component';
 import { DashboardLayoutComponent } from '@layouts/dashboard-layout/components/dashboard-layout.component';
-import { ConfigService } from './dashboard/services/dashboard.service';
 import { SharedUiModule } from '@shared/modules/shared-ui.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppService } from './app.service';
@@ -26,7 +25,6 @@ import { GlobalErrorHandlerService } from '@shared/services/error-handling.servi
     HttpClientModule,
   ],
   providers: [
-    ConfigService,
     AppService,
     {
       provide: HTTP_INTERCEPTORS,
