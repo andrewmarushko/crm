@@ -2,12 +2,16 @@
 
 section.main {
   grid-area: main;
+  width: 94%;
+  margin: 0 auto;
+  padding: 24px 2%;
+  border-radius: 8px;
 }
 
 .layout-container {
   display: grid;
   height: 100vh;
-  grid-template-columns: 300px 1fr;
+  grid-template-columns: 150px 1fr;
   grid-template-rows: 150px 1fr;
   grid-template-areas:
     "sidebar header"
