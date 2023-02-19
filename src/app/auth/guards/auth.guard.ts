@@ -1,29 +1,17 @@
 import { Injectable } from '@angular/core';
-import {
-  ActivatedRouteSnapshot,
-  CanActivate,
-  Router,
-  RouterStateSnapshot,
-  UrlTree,
-} from '@angular/router';
-import { CookieService } from 'ngx-cookie-service';
+import { CanActivate, Router, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
-  constructor(private router: Router, private cookieService: CookieService) {}
-  canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-  ):
+  constructor(private router: Router) {}
+  canActivate():
     | boolean
     | UrlTree
     | Observable<boolean | UrlTree>
     | Promise<boolean | UrlTree> {
     const accessToken = localStorage.getItem('accessToken');
     const companyId = localStorage.getItem('company_id');
-
-    console.log({ accessToken, companyId });
 
     if (accessToken && companyId) {
       return true;

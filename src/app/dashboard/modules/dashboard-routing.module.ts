@@ -10,6 +10,12 @@ import { WarehousComponent } from '@dashboard/components/warehous/warehous.compo
 
 export const dashboardRoutes: Routes = [
   {
+    path: '',
+    redirectTo: 'dashboard',
+    pathMatch: 'full',
+  },
+
+  {
     path: 'dashboard',
     title: 'Dashboard',
     component: DashboardComponent,
