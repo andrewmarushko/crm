@@ -2,14 +2,13 @@
 
 section.main {
   grid-area: main;
-  border: 1px solid var(--primary);
 }
 
 .layout-container {
   display: grid;
   height: 100vh;
   grid-template-columns: 300px 1fr;
-  grid-template-rows: 60px 1fr;
+  grid-template-rows: 150px 1fr;
   grid-template-areas:
     "sidebar header"
     "sidebar main";
@@ -21,5 +20,4 @@ app-header {
 
 app-sidebar {
   grid-area: sidebar;
-  border: 1px solid var(--primary);
 }
