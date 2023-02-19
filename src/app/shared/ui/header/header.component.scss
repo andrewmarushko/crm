@@ -1,0 +1,64 @@
+@import "base.scss";
+
+.header {
+  max-width: 90%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+}
+
+.action-section {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.user-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.avatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  width: 90px;
+  height: 90px;
+  background: var(--primary);
+}
+
+.hola {
+  font-weight: 600;
+  font-size: 1.725em;
+}
+
+.user-name {
+  font-weight: 400;
+  font-size: 1.725em;
+}
+
+.theme-mode {
+  width: 80px;
+  height: 40px;
+  background: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+}
+
+.notification {
+  width: 90px;
+  height: 90px;
+  background: var(--primary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  font-size: 3em;
+  cursor: pointer;
+}

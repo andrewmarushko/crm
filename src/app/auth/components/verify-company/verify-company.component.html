@@ -1,0 +1,22 @@
+<h1 class="form-title">Verify Company</h1>
+<app-alert-message
+  *ngIf="errorMessage$ | async"
+  [message]="error"
+></app-alert-message>
+<form class="form" [formGroup]="verifyCompanyForm" (ngSubmit)="onSubmitForm()">
+  <div class="input-container">
+    <app-text-input
+      id="company_name"
+      label="Company name"
+      type="text"
+      placeholder="Type your company name"
+      [control]="verifyCompanyForm.controls.company_name"
+      [controlName]="verifyCompanyForm.controls.company_name"
+    ></app-text-input>
+    <app-button
+      [disabled]="verifyCompanyForm.invalid"
+      [full]="true"
+      [label]="'Verify'"
+    ></app-button>
+  </div>
+</form>

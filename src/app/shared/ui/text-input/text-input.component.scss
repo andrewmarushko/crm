@@ -1,3 +1,5 @@
+@import "mixins.scss";
+
 .form-control {
   display: flex;
   flex-direction: column;
@@ -6,7 +8,27 @@
 .input {
   border: 1px solid var(--cta-primary);
   padding: 10px 15px;
-  font-size: 14px;
   background: inherit;
   color: var(--color-text);
+}
+.label {
+  font-size: 0.9em;
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+
+@keyframes input-message-animation {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
+.input-error {
+  @include input-message();
+  color: var(--error-color);
 }

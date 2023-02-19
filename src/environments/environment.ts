@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  baseUrl: 'https://app.coinsender.io/api',
+  baseUrl: 'https://app.mega-hub.io/api',
 };

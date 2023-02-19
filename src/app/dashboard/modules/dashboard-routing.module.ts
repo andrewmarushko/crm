@@ -18,6 +18,18 @@ export const dashboardRoutes: Routes = [
     component: ClientsComponent,
     canActivate: [AuthGuard],
   },
+  {
+    path: 'invoice2',
+    title: 'Invoices',
+    component: DashboardComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'clients3',
+    title: 'Clients',
+    component: ClientsComponent,
+    canActivate: [AuthGuard],
+  },
 ];
 
 const routes: Routes = [

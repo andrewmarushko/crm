@@ -1,82 +1,102 @@
-import { Router } from '@angular/router';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { catchError, tap } from 'rxjs/operators';
 import { environment } from '@env/environment';
-import { BehaviorSubject, Observable, of } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
-import { CreateUserRequestInterface } from '@auth/types/auth.interface';
-import { AuthRequestInterface } from '@auth/types/auth.interface';
-import { getCookie } from '@helpers/cookies.helper';
-import {
-  CurrentUserInterface,
-  initialState,
-} from '@shared/services/user.service';
+import { throwError } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  constructor(private httpClient: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
-  private error = new BehaviorSubject<ErrorResponseInterface | null>(null);
-  private user = new BehaviorSubject<CurrentUserInterface | null | undefined>(
-    initialState
-  );
-
-  user$: Observable<any> = this.user.asObservable();
-  errorMessage$: Observable<ErrorResponseInterface | null> =
-    this.error.asObservable();
-
-  signIn(
-    credentials: AuthRequestInterface
-  ): Observable<CurrentUserInterface | null | undefined> {
-    return this.httpClient
-      .post<AuthRequestInterface>(
-        `${environment.baseUrl}/authentication/login`,
-        credentials,
-        { withCredentials: true }
-      )
+  verifyCompany(company_name: VerifyCompanyRequest) {
+    return this.http
+      .post<VerifyCompanyResponse>(`${environment.baseUrl}/company/validate`, {
+        company_name,
+      })
       .pipe(
-        map((user: any) => {
-          localStorage.setItem('access', getCookie('Authentication'));
-          localStorage.setItem('refresh', getCookie('Refresh'));
-          this.user.next(user);
-          return user;
+        tap((response) => {
+          const company_id = response.company_id;
+          if (company_id) {
+            localStorage.setItem('company_id', company_id);
+            this.router.navigate(['/auth/sign-in']);
+          }
         }),
-        catchError((error: HttpErrorResponse) => {
-          console.log('error', error.error);
-          this.error.next(error.error);
-          return of(null);
+        catchError((err) => {
+          localStorage.setItem('company_id', 'null');
+          return throwError(() => err.error.message);
         })
       );
+  }
+
+  signIn(formData: LoginRequest) {
+    return this.http
+      .post<LoginRequest>(`${environment.baseUrl}/auth/login`, formData)
+      .pipe(
+        tap((res: any) => {
+          const user = res.user;
+          const accessToken = res.accessToken;
+          const refreshToken = res.refreshToken;
+
+          if (accessToken && refreshToken) {
+            localStorage.setItem('refreshToken', refreshToken);
+            localStorage.setItem('accessToken', accessToken);
+            localStorage.setItem('user', JSON.stringify(user));
+            this.router.navigate(['/invoice']);
+          }
+        }),
+        catchError((err) => {
+          console.info('error from auth service', err);
+          return throwError(() => err.error.message);
+        })
+      );
+  }
+
+  checkAuthUser() {
+    const accessToken = localStorage.getItem('accessToken');
+    const companyId = localStorage.getItem('company_id');
+
+    if (accessToken && companyId) {
+      this.router.navigate(['/invoice']);
+    }
   }
 
   signOut() {}
 
-  register(
-    newUserData: CreateUserRequestInterface
-  ): Observable<ErrorResponseInterface> {
-    return this.httpClient
-      .post<CreateUserRequestInterface>(
-        `${environment.baseUrl}/authentication/registration`,
-        newUserData
-      )
-      .pipe(
-        map(() => {
-          this.router.navigate(['/auth/sign-in']);
-          return of(null);
-        }),
-        catchError((error) => {
-          this.error.next(error.error);
-          return of(error.error);
-        })
-      );
-  }
+  signUp() {}
 
   resetPassword() {}
 
-  refreshToken() {}
+  refreshToken(refreshAccessToken: string) {
+    const companyId = localStorage.getItem('company_id');
+    console.log(companyId);
+    return this.http.post<any>(
+      `${environment.baseUrl}/auth/refresh`,
+      {
+        refreshAccessToken,
+      },
+      {
+        headers: {
+          company_id: companyId!,
+        },
+      }
+    );
+  }
 }
 
-export interface ErrorResponseInterface {
-  statusCode: number | null;
-  message: string;
+export interface LoginRequest {
+  corporate_email: string;
+  password: string;
 }
+
+export interface VerifyCompanyRequest {
+  company_name: string;
+}
+interface VerifyCompanyResponse {
+  id: number;
+  company_id: string;
+  status: boolean;
+  company_name: string;
+}
+
+// TODO add missing and move interfaces

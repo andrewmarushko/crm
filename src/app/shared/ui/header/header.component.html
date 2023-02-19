@@ -1,3 +1,12 @@
 <header class="header" *ngIf="user$ | async as user">
-  User: {{ user.email }}
+  <div class="user-section">
+    <div class="avatar">JH</div>
+    <span class="hola">Hola,</span>
+
+    <span class="user-name"> {{ user.name ? user.name : "John" }}</span>
+  </div>
+  <div class="action-section">
+    <div class="theme-mode">mode</div>
+    <div class="notification">i</div>
+  </div>
 </header>

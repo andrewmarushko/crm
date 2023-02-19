@@ -8,10 +8,13 @@ main.dark {
   --cta-primary: #4d194d;
   --cta-text-color: #f5fefb;
   --cta-input-color: #4d194d;
+  --cta-disabled-bg: #817081;
   --primary-font-weight: 400;
   --primary-font-size: 16px;
   --error-color: #ff403b;
   --paper-background: rgb(29 28 49);
+  --error-color-text: #5f2120;
+  --alert-error-bg: #fdeded;
 }
 
 main.light {
@@ -20,8 +23,11 @@ main.light {
   --cta-primary: #4d194d;
   --cta-text-color: #f5fefb;
   --cta-input-color: #4d194d;
+  --cta-disabled-bg: #817081;
   --primary-font-weight: 400;
   --primary-font-size: 16px;
   --error-color: #ff403b;
   --paper-background: #ffffff;
+  --error-color-text: #5f2120;
+  --alert-error-bg: #fdeded;
 }

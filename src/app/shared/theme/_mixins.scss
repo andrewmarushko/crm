@@ -5,6 +5,13 @@
   box-shadow: $shadow $shadow-color;
 }
 
+@mixin input-message() {
+  font-size: 14px;
+  padding: 2px 0px;
+  animation-name: input-message-animation;
+  animation-duration: 300ms;
+}
+
 // @mixin media-screen($breakpoint) {
 //   $breakpoints: (
 //     xs: (

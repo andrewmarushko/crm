@@ -11,12 +11,19 @@
   box-sizing: border-box;
 }
 
-input {
-  border-radius: 8px;
-  outline: none;
-}
-
 body {
   height: 100%;
   @include typography($base-font-size);
+}
+
+input {
+  border-radius: 8px;
+  outline: none;
+  &.ng-dirty.ng-invalid {
+    border: 1px solid var(--error-color);
+  }
+}
+
+a {
+  text-decoration: none;
 }

@@ -7,9 +7,15 @@ import { SignUpComponent } from '@auth/components/sign-up/sign-up.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedUiModule } from '@shared/modules/shared-ui.module';
 import { AuthRoutingModule } from './auth-routing.module';
+import { VerifyCompanyComponent } from '@auth/components/verify-company/verify-company.component';
 
 @NgModule({
-  declarations: [SignInComponent, SignUpComponent, ForgotPasswordComponent],
+  declarations: [
+    SignInComponent,
+    SignUpComponent,
+    ForgotPasswordComponent,
+    VerifyCompanyComponent,
+  ],
   imports: [
     CommonModule,
     AuthRoutingModule,

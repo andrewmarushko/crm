@@ -42,3 +42,15 @@ app-text-input {
   @include spacing(1, 0);
   flex: 1;
 }
+
+.redirect-wrapper {
+  display: flex;
+  justify-content: center;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.link {
+  margin-left: 5px;
+  color: var(--cta-primary);
+}

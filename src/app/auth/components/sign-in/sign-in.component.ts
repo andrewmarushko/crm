@@ -1,9 +1,8 @@
 import { FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '@auth/services/auth/auth.service';
-import { AuthRequestInterface } from '@auth/types/auth.interface';
-import { map, Observable } from 'rxjs';
-import { CurrentUserInterface } from '@shared/services/user.service';
+import { AuthService, LoginRequest } from '@auth/services/auth/auth.service';
+import { catchError, Observable, of, tap } from 'rxjs';
+import { CurrentUserInterface } from '@shared/interfaces/user.interface';
 
 @Component({
   selector: 'app-sign-in',
@@ -13,25 +12,28 @@ import { CurrentUserInterface } from '@shared/services/user.service';
 export class SignInComponent implements OnInit {
   constructor(private fb: FormBuilder, private authService: AuthService) {}
 
-  errorMessage$: Observable<any>;
-  currentUser$: Observable<CurrentUserInterface | null | undefined>;
+  error: Error | null = null;
+  currentUser$: Observable<CurrentUserInterface>;
+  errorMessage$: Observable<Error>;
 
   signInForm = this.fb.group({
-    email: ['', [Validators.required, Validators.email]],
+    corporate_email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(3)]],
   });
 
   onSubmitForm() {
     this.currentUser$ = this.authService.signIn(
-      this.signInForm.value as AuthRequestInterface
+      this.signInForm.value as LoginRequest
+    );
+
+    this.errorMessage$ = this.currentUser$.pipe(
+      tap({
+        error: (err) => (this.error = err),
+        complete: () => (this.error = null),
+      }),
+      catchError((error) => of(error))
     );
   }
 
-  ngOnInit(): void {
-    this.errorMessage$ = this.authService.errorMessage$.pipe(
-      map((error) => error)
-    );
-
-    this.currentUser$ = this.authService.user$;
-  }
+  ngOnInit(): void {}
 }
