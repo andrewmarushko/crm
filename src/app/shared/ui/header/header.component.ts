@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  CurrentUserInterface,
-  UserService,
-} from '@shared/services/user.service';
+import { CurrentUserInterface } from '@shared/interfaces/user.interface';
+import { UserService } from '@shared/services/user.service';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -16,7 +14,7 @@ export class HeaderComponent implements OnInit {
   constructor(private userService: UserService) {}
 
   ngOnInit(): void {
+    this.userService.setCurrentUser();
     this.user$ = this.userService.user$;
   }
-  setUser() {}
 }

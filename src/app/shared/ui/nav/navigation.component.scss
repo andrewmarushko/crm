@@ -1,3 +1,22 @@
+.nav {
+  display: flex;
+  flex-direction: column;
+  background: var(--primary);
+  width: 120px;
+  gap: 30px;
+  padding: 24px 0;
+
+  a {
+    padding: 0px 24px;
+
+    &:hover {
+      background: var(--cta-primary);
+      color: var(--cta-text-color);
+    }
+  }
+}
+
 .active {
-  background: red;
+  color: var(--cta-primary);
+  font-weight: 600;
 }
