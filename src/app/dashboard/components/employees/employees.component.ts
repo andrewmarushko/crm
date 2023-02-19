@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-employees',
-  template: `<h1>Employees</h1>`,
+  templateUrl: './employees.component.html',
+  styleUrls: ['./employees.component.scss'],
 })
 export class EmployeesComponent {}

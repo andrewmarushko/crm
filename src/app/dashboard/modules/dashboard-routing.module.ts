@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { DashboardComponent } from '@dashboard/components/dashboard/dashboard.component';
 import { AuthGuard } from '@auth/guards/auth.guard';
-import { EmployeesComponent } from '@dashboard/components/employees/employee.component';
+import { EmployeesComponent } from '@dashboard/components/employees/employees.component';
 import { CandidatesComponent } from '@dashboard/components/candidates/candidates.component';
 import { CalendarComponent } from '@dashboard/components/calendar/calendar.component';
 import { WarehousComponent } from '@dashboard/components/warehous/warehous.component';
