@@ -43,7 +43,6 @@ export class TokenInterceptor implements HttpInterceptor {
 
             return this.authService.refreshToken(refreshToken!).pipe(
               switchMap((data: any) => {
-                console.log('companyID', companyId);
                 this.refreshTokenAttempts = 0;
 
                 localStorage.setItem('accessToken', data.accessToken);
