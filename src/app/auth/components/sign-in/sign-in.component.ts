@@ -1,8 +1,9 @@
 import { FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import { AuthService, LoginRequest } from '@auth/services/auth/auth.service';
+import { AuthService } from '@auth/services/auth/auth.service';
 import { catchError, Observable, of, tap } from 'rxjs';
 import { CurrentUserInterface } from '@shared/interfaces/user.interface';
+import { LoginRequest } from '@auth/types/auth.interface';
 
 @Component({
   selector: 'app-sign-in',
