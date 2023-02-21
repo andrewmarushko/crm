@@ -5,6 +5,17 @@
   box-shadow: $shadow $shadow-color;
 }
 
+@mixin glass-bg() {
+  background: linear-gradient(
+    190.57deg,
+    rgba(255, 255, 255, 0.56) 19.25%,
+    rgba(248, 248, 255, 0.71) 54.39%,
+    rgba(255, 255, 255, 0.59) 90.02%
+  );
+  box-shadow: -10px 48.5967px 140px rgba(126, 123, 160, 0.2);
+  backdrop-filter: blur(9.5px);
+}
+
 @mixin input-message() {
   font-size: 14px;
   padding: 2px 0px;
@@ -12,55 +23,35 @@
   animation-duration: 300ms;
 }
 
-// @mixin media-screen($breakpoint) {
-//   $breakpoints: (
-//     xs: (
-//       max-width: $xs-max,
-//     ),
-//     sm: (
-//       min-width: $sm-min,
-//       max-width: $sm-max,
-//     ),
-//     md: (
-//       min-width: $md-min,
-//       max-width: $md-max,
-//     ),
-//     lg: (
-//       min-width: $lg-min,
-//       max-width: $lg-max,
-//     ),
-//     xl: (
-//       min-width: $xl-min,
-//     ),
-//   );
-
-//   @each $point, $query in $breakpoints {
-//     @if $breakpoint == $point {
-//       @media #{$query} {
-//         @content;
-//       }
-//     }
-//   }
-// }
-
-// @mixin media-screen($breakpoint) {
-//   // $breakpoint is simply a variable that can have several values
-
-//   @if $breakpoint==tablet {
-//     // here `laptop` is the value of $breakpoint
-//     // when call laptop, we mean the following piece of code
-
-//     @media only screen and (max-width: 600px) {
-//       @content;
-//     }
-//   }
-
-//   @if $breakpoint==mobile {
-//     @media only screen and (max-width: 480px) {
-//       @content;
-//     }
-//   }
-// }
+@mixin media-screen($breakpoint) {
+  $breakpoints: (
+    xs: (
+      max-width: $xs-max,
+    ),
+    sm: (
+      min-width: $sm-min,
+      max-width: $sm-max,
+    ),
+    md: (
+      min-width: $md-min,
+      max-width: $md-max,
+    ),
+    lg: (
+      min-width: $lg-min,
+      max-width: $lg-max,
+    ),
+    xl: (
+      min-width: $xl-min,
+    ),
+  );
+  @each $point, $query in $breakpoints {
+    @if $breakpoint == $point {
+      @media #{$query} {
+        @content;
+      }
+    }
+  }
+}
 
 @mixin typography(
   $font-size,

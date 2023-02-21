@@ -48,14 +48,7 @@ export const dashboardRoutes: Routes = [
   },
 ];
 
-const routes: Routes = [
-  {
-    path: '',
-    redirectTo: 'invoice',
-    pathMatch: 'full',
-  },
-  ...dashboardRoutes,
-];
+const routes: Routes = [...dashboardRoutes];
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],

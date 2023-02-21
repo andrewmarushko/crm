@@ -1,0 +1,6 @@
+@import "mixins.scss";
+
+.card {
+  @include glass-bg();
+  padding: 24px;
+}
