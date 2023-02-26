@@ -10,6 +10,8 @@ import { catchError, Observable, of, tap } from 'rxjs';
 })
 export class VerifyCompanyComponent {
   constructor(private fb: FormBuilder, private authService: AuthService) {}
+
+  // TODO: remove any type and add actual interface
   verify$: Observable<any>;
   errorMessage$: Observable<Error>;
   error: Error | null = null;

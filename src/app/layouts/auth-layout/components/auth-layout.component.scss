@@ -1,3 +1,5 @@
+@import "mixins.scss";
+
 .auth-container {
   display: flex;
   height: 100vh;
@@ -12,9 +14,10 @@
   box-shadow: 0px 7px 20px rgba(40, 41, 61, 0.08);
   border-radius: 8px;
   padding: 48px 30px;
-  background: var(--paper-background);
+  @include glass-bg();
 }
 
 app-logo {
   transform: translate(0px, 29px);
+  z-index: 2;
 }

@@ -4,6 +4,11 @@ import { catchError, tap } from 'rxjs/operators';
 import { environment } from '@env/environment';
 import { throwError } from 'rxjs';
 import { Router } from '@angular/router';
+import {
+  LoginRequest,
+  VerifyCompanyRequest,
+  VerifyCompanyResponse,
+} from '@auth/types/auth.interface';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -42,7 +47,7 @@ export class AuthService {
             localStorage.setItem('refreshToken', refreshToken);
             localStorage.setItem('accessToken', accessToken);
             localStorage.setItem('user', JSON.stringify(user));
-            this.router.navigate(['/invoice']);
+            this.router.navigate(['/dashboard']);
           }
         }),
         catchError((err) => {
@@ -57,7 +62,7 @@ export class AuthService {
     const companyId = localStorage.getItem('company_id');
 
     if (accessToken && companyId) {
-      this.router.navigate(['/invoice']);
+      this.router.navigate(['/dashboard']);
     }
   }
 
@@ -83,20 +88,3 @@ export class AuthService {
     );
   }
 }
-
-export interface LoginRequest {
-  corporate_email: string;
-  password: string;
-}
-
-export interface VerifyCompanyRequest {
-  company_name: string;
-}
-interface VerifyCompanyResponse {
-  id: number;
-  company_id: string;
-  status: boolean;
-  company_name: string;
-}
-
-// TODO add missing and move interfaces
